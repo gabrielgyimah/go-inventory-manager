@@ -25,6 +25,8 @@ export default function LoginScreen() {
   const [countryCode, setCountryCode] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [callingCode,  setCallingCode] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
 
 
   const submitLoginHandler = async () => {
@@ -49,10 +51,12 @@ export default function LoginScreen() {
             </Animated.View>
             <TextInput 
               placeholder='Email Address'
-              style={{
-                flex: 1, color: theme.text.primary
-              }}  
-              placeholderTextColor={theme.text.muted} 
+              style={{ flex: 1, color: theme.text.primary }}  
+              placeholderTextColor={theme.text.muted}
+              value={email}
+              onChangeText={setEmail}
+              keyboardType='email-address'
+              autoCapitalize='none'
             />
           </Animated.View>
 
@@ -63,12 +67,20 @@ export default function LoginScreen() {
               <StyledBodyMutedText text='Password'/>
               <Ionicons size={8} name='star' color={theme.status.valid}/>
             </Animated.View>
-            <TextInput style={{
-              flex: 1, color: theme.text.primary}} 
-              secureTextEntry placeholderTextColor={theme.text.muted} 
-              placeholder='**********'
+            <TextInput 
+              style={{ flex: 1, color: theme.text.primary }} 
+              secureTextEntry={!showPassword} 
+              placeholder='**********' 
+              placeholderTextColor={theme.text.muted}
+              value={password}
+              onChangeText={setPassword}
+              autoCapitalize='none'
             />
-            <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={{ width: 50, flexDirection: 'row', justifyContent: 'flex-end' }}>
+            <TouchableOpacity 
+              onPress={() => setShowPassword(!showPassword)} 
+              style={{ width: 50, flexDirection: 'row', justifyContent: 'flex-end' }}
+              accessibilityLabel={showPassword ? 'Hide password' : 'Show password'}
+            >
               <Ionicons name={showPassword ? 'eye' : 'eye-off'} color={theme.text.muted} size={24} />
             </TouchableOpacity>
           </Animated.View>

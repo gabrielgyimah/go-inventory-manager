@@ -25,7 +25,14 @@ export interface PhoneNumberInputProps {
   setPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const PhoneNumberInput = ({countryCode, setCountryCode, setAreaCode, phoneNumber, areaCode, setPhoneNumber}: PhoneNumberInputProps) => {
+const PhoneNumberInput = ({
+  countryCode, 
+  setCountryCode, 
+  setAreaCode, 
+  phoneNumber, 
+  areaCode, 
+  setPhoneNumber
+}: PhoneNumberInputProps) => {
   const {theme, primaryBackgroundColorAnimation} = useTheme()
 
   const [value, setValue] = useState('');

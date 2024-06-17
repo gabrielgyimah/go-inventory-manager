@@ -55,7 +55,7 @@ export default function ThemeSettingsButton() {
         <Ionicons name='sunny-outline' color={theme.text.primary} size={28} />
       </TouchableOpacity>
 
-      <CustomBottomSheet ref={bottomSheet} customDetached snapPoints={bottomSheetSnapPoints} title='Theme'>
+      <CustomBottomSheet isPanDownToCloseEnabled={false} ref={bottomSheet} customDetached snapPoints={bottomSheetSnapPoints} title='Theme'>
         <Animated.View style={[
           primaryBackgroundColorAnimation, { 
             paddingVertical: 20, justifyContent: 'center', alignItems: 'center',

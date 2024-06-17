@@ -44,7 +44,7 @@ export default function SignupScreen() {
           <Animated.View style={[styles.inputContainer, borderMutedColorAnimation]}>
             <MailIcon />
             <Animated.View style={[styles.inputLabel, primaryBackgroundColorAnimation]}>
-              <StyledBodyMutedText text='Email Address'/>
+              <StyledBodyMutedText text='Email Address' />
               <Ionicons size={8} name='star' color={theme.status.valid}/>
             </Animated.View>
             <TextInput 

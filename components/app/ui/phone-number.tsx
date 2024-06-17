@@ -1,12 +1,10 @@
 import { useTheme } from '@/context/theme-context';
 import { Ionicons } from '@expo/vector-icons';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import React, {useState, useRef, forwardRef, useMemo} from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   View,
-  StatusBar,
   TouchableOpacity,
   Text,
   Alert,
@@ -15,6 +13,8 @@ import PhoneInput from 'react-native-phone-number-input';
 import CustomBottomSheet from './custom-bottom-sheet';
 import Animated from 'react-native-reanimated';
 import { StyledBodyMutedText } from './styled-components/style-texts';
+import CountryPicker, { CountryCode } from 'react-native-country-picker-modal';
+import CountryFlag from 'react-native-country-picker-modal';
 
 export interface PhoneNumberInputProps {
   countryCode: string;
@@ -25,27 +25,28 @@ export interface PhoneNumberInputProps {
   setPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
 }
 
+// Type guard to check if a value is a valid CountryCode
+const isCountryCode = (value: any): value is CountryCode => {
+  return typeof value === 'string' && value.length === 2;
+};
+
 const PhoneNumberInput = ({
-  countryCode, 
-  setCountryCode, 
-  setAreaCode, 
-  phoneNumber, 
-  areaCode, 
-  setPhoneNumber
+  countryCode, setCountryCode, setAreaCode, phoneNumber, areaCode, setPhoneNumber
 }: PhoneNumberInputProps) => {
-  const {theme, primaryBackgroundColorAnimation} = useTheme()
+  const { theme, primaryBackgroundColorAnimation } = useTheme();
 
   const [value, setValue] = useState('');
   const [formattedValue, setFormattedValue] = useState('');
   const [valid, setValid] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
+  const [country, setCountry] = useState<{ cca2: CountryCode, callingCode: string }>({ cca2: 'US', callingCode: '1' });
   const phoneInput = useRef<PhoneInput>(null);
 
-  const bottomSheetRef = useRef<BottomSheetModal | null>(null)
-  const openBottomSheet = () => bottomSheetRef.current?.present()
-  const closeBottomSheet = () => bottomSheetRef.current?.close()
-  const bottomSheetSnapPoints = useMemo(() => ['56%'], [])
+  const bottomSheetRef = useRef<BottomSheetModal | null>(null);
+  const openBottomSheet = () => bottomSheetRef.current?.present();
+  const closeBottomSheet = () => bottomSheetRef.current?.close();
+  const bottomSheetSnapPoints = useMemo(() => ['56%'], []);
 
   const styles = StyleSheet.create({
     container: {
@@ -53,13 +54,6 @@ const PhoneNumberInput = ({
       alignItems: 'center',
       paddingVertical: 18,
       borderRadius: 12
-    },
-    wrapper: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingVertical: 12
-      // backgroundColor: 'red'
     },
     button: {
       marginTop: 20,
@@ -80,17 +74,9 @@ const PhoneNumberInput = ({
       shadowRadius: 6.27,
       elevation: 10,
     },
-    buttonText:{
+    buttonText: {
       color: theme.text.primary,
       fontSize: 14,
-    },
-    message: {
-      padding: 16,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: theme.text.muted,
-      borderRadius: 12,
-      width: 328,
-      marginBottom: 16,
     },
     inputLabel: {
       flexDirection: 'row', gap: 3, alignItems: 'center', position: 'absolute', 
@@ -100,20 +86,21 @@ const PhoneNumberInput = ({
 
   return (
     <>
-      <TouchableOpacity onPress={openBottomSheet} style={{ flexDirection: 'row', flex: 1, gap: 8}}>
+      <TouchableOpacity onPress={openBottomSheet} style={{ flexDirection: 'row', flex: 1, gap: 8 }}>
         <View style={{ 
-          backgroundColor: theme.others.accent, justifyContent: 'center', 
-          alignItems: 'center', borderRadius: 10, overflow: 'hidden', height: 28, width: 28}}>
-            <Ionicons name='call-outline' size={20} color={theme.others.white} />
+          justifyContent: 'center', 
+          alignItems: 'center', borderRadius: 10, overflow: 'hidden', height: 28, width: 28 }}>
+            {isCountryCode(country.cca2) && (
+              <CountryFlag countryCode={country.cca2} />
+            )}
         </View>
         <Animated.View style={[styles.inputLabel, primaryBackgroundColorAnimation]}>
           <StyledBodyMutedText text='Phone Number'/>
           <Ionicons size={8} name='star' color={theme.status.valid}/>
         </Animated.View>
-        <View style={{ flexDirection: 'row', gap: 8, justifyContent: 'space-between', alignItems: 'center', flex: 1}}>
-          <View style={{ flex: 1}}>
-            <Text style={{ color: theme.text.primary}}>{countryCode ? countryCode : 'US'}</Text>
-            <Text style={{ color: theme.text.muted}}>
+        <View style={{ flexDirection: 'row', gap: 8, justifyContent: 'space-between', alignItems: 'center', flex: 1 }}>
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: theme.text.muted }}>
               {areaCode ? areaCode : '+1'} {phoneNumber || '971 182 178'}
             </Text>
           </View>
@@ -121,23 +108,28 @@ const PhoneNumberInput = ({
         </View>
       </TouchableOpacity>
 
-      <CustomBottomSheet customDetached snapPoints={bottomSheetSnapPoints}  ref={bottomSheetRef}>
-        <Animated.View style={[styles.container, { backgroundColor: theme.background.primary}]}>
+      <CustomBottomSheet customDetached snapPoints={bottomSheetSnapPoints} ref={bottomSheetRef}>
+        <Animated.View style={[styles.container, { backgroundColor: theme.background.primary }]}>
           <PhoneInput
             ref={phoneInput}
             defaultValue={value}
             defaultCode="US"
             layout="first"
-            textContainerStyle={{backgroundColor: theme.background.primary, borderColor: theme.text.muted,
+            textContainerStyle={{
+              backgroundColor: theme.background.primary, 
+              borderColor: theme.text.muted,
               borderRadius: 12,
-              borderWidth: StyleSheet.hairlineWidth}}
-            codeTextStyle={{color: theme.text.primary}}
-            countryPickerButtonStyle={{borderColor: theme.text.muted,
+              borderWidth: StyleSheet.hairlineWidth
+            }}
+            codeTextStyle={{ color: theme.text.primary }}
+            countryPickerButtonStyle={{
+              borderColor: theme.text.muted,
               borderRadius: 12,
               backgroundColor: theme.background.primary,
-              borderWidth: StyleSheet.hairlineWidth}}
-            textInputStyle={{color: theme.text.primary}}
-            containerStyle={{gap: 8, flex: 1, backgroundColor: theme.background.primary}}
+              borderWidth: StyleSheet.hairlineWidth
+            }}
+            textInputStyle={{ color: theme.text.primary }}
+            containerStyle={{ gap: 8, flex: 1, backgroundColor: theme.background.primary }}
             onChangeText={(text) => {
               setValue(text);
             }}
@@ -145,12 +137,16 @@ const PhoneNumberInput = ({
               setFormattedValue(text);
               setCountryCode(phoneInput.current?.getCountryCode() || '');
             }}
-            countryPickerProps={{withAlphaFilter:true}}
+            countryPickerProps={{ withAlphaFilter: true }}
             disabled={disabled}
             withDarkTheme
             withShadow
             autoFocus
-            onChangeCountry={(cnt) => {}}
+            onChangeCountry={(country) => {
+              if (isCountryCode(country.cca2)) {
+                setCountry({ cca2: country.cca2, callingCode: country.callingCode[0] });
+              }
+            }}
           />
           <TouchableOpacity
             style={styles.button}
@@ -158,9 +154,11 @@ const PhoneNumberInput = ({
               setShowMessage(true)
               const checkValid = phoneInput.current?.isValidNumber(value);
               setValid(checkValid ? checkValid : false);
-              if (!checkValid) {Alert.alert('Phone number is not valid')} else {
+              if (!checkValid) {
+                Alert.alert('Phone number is not valid')
+              } else {
                 setCountryCode(phoneInput.current?.getCountryCode() || '');
-                const areaCode = phoneInput.current?.getCallingCode()
+                const areaCode = phoneInput.current?.getCallingCode();
                 setAreaCode(areaCode!)
                 const getNumberAfterPossiblyEliminatingZero = phoneInput.current?.getNumberAfterPossiblyEliminatingZero();
                 setPhoneNumber(getNumberAfterPossiblyEliminatingZero?.number!)
@@ -170,10 +168,9 @@ const PhoneNumberInput = ({
             <Text style={styles.buttonText}>Go</Text>
           </TouchableOpacity>
         </Animated.View>
-      </CustomBottomSheet >
+      </CustomBottomSheet>
     </>
   );
 };
-
 
 export default PhoneNumberInput;

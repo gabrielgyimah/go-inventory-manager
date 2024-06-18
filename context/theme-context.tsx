@@ -79,12 +79,12 @@ export const ThemeProvider: React.FC<Props> = ({ children }: Props) => {
   const [useSystem, setUseSystem] = useState(true);
 
   // Set initial theme based on system preference
-  // useEffect(() => {
-  //   const colorScheme = Appearance.getColorScheme();
-  //   const initialMode = colorScheme === 'dark' ? 'dark' : 'light';
-  //   setMode(initialMode);
-  //   setTheme(initialMode === 'dark' ? darkTheme : lightTheme);
-  // }, []);
+  useEffect(() => {
+    const colorScheme = Appearance.getColorScheme();
+    const initialMode = colorScheme === 'dark' ? 'dark' : 'light';
+    setMode(initialMode);
+    setTheme(initialMode === 'dark' ? darkTheme : lightTheme);
+  }, []);
 
   // Listen for system theme changes
   useEffect(() => {
@@ -171,9 +171,6 @@ export const ThemeProvider: React.FC<Props> = ({ children }: Props) => {
     };
   });
   
-  
-  
-
   const contextValue = {
     theme,
     mode,

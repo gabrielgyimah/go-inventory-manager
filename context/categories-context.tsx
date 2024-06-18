@@ -130,7 +130,8 @@ const CategoryContextProvider = ({ children }: CategoryContextProviderProps): JS
     setLoading(true);
     setError(null);
     try {
-      // Replace with your actual data fetching logic
+    // To be completed later
+    // Will call an endpoint to retrieve the current user's business entity
       const response = await fetch('/api/categories');
       const data: Category[] = await response.json();
       setCategories(data);

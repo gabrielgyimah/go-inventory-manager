@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 
 /**
- * Interface representing an invitation to an organization.
+ * Interface representing an invitation to an business.
  * @interface InviteInterface
  */
 export interface InviteInterface {
@@ -12,16 +12,16 @@ export interface InviteInterface {
   id: string;
 
   /**
-   * The name of the organization sending the invite.
+   * The name of the business sending the invite.
    * @type {string}
    */
-  organizationName: string;
+  businessName: string;
 
   /**
-   * The URL of the organization's image.
+   * The URL of the business's image.
    * @type {string}
    */
-  organizationImageUrl: string;
+  businessImageUrl: string;
 
   /**
    * The message included with the invite.

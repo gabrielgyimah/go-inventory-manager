@@ -106,6 +106,18 @@ export interface BusinessContextInterface {
    * @returns {BusinessInterface | null} The current business entity.
    */
   getBusiness: () => BusinessInterface | null;
+
+  /**
+   * Indicates whether the categories are currently being fetched.
+   * @type {boolean}
+   */
+    loading: boolean;
+
+  /**
+   * Error message if fetching categories fails.
+   * @type {string | null}
+   */
+  error: string | null;
 }
 
 /**
@@ -133,6 +145,8 @@ interface BusinessContextProviderProps {
  */
 const BusinessContextProvider = ({ children }: BusinessContextProviderProps): JSX.Element => {
   const [business, setBusiness] = useState<BusinessInterface | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   /**
    * Utility function to get the current user's business entity.
@@ -147,7 +161,9 @@ const BusinessContextProvider = ({ children }: BusinessContextProviderProps): JS
   const contextValue: BusinessContextInterface = {
     business,
     setBusiness,
-    getBusiness
+    getBusiness,
+    loading,
+    error
   };
 
   return (

@@ -69,6 +69,18 @@ export interface InviteContextInterface {
    * Function to retrieve the list of invites.
    */
   getInvites: () => void;
+
+  /**
+   * Indicates whether the users invites is currently being fetched or a an invite is being accepted or declined.
+   * @type {boolean}
+   */
+  loading: boolean;
+
+  /**
+   * Error message if fetching/accepting or declining fails business fails.
+   * @type {string | null}
+   */
+  error: string | null;
 }
 
 /**
@@ -98,6 +110,8 @@ interface InvitesContextProviderProps {
 
 const InvitesContextProvider = ({ children }: InvitesContextProviderProps) => {
   const [invites, setInvites] = useState<InviteInterface[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const getInvites = async () => {
     // Implementation for fetching invites
@@ -118,7 +132,9 @@ const InvitesContextProvider = ({ children }: InvitesContextProviderProps) => {
     setInvites,
     getInvites,
     acceptInvite,
-    declineInvites
+    declineInvites,
+    loading,
+    error
   };
 
   return (

@@ -11,7 +11,13 @@ interface IconProps {
    * Size of the icon
    * @type { number }
    */
-  size: number;
+  size?: number;
+
+  /**
+   * Color of the icon
+   * @type { string }
+   */
+  color?: string;
 
   /**
    * Name of the icon to render. Should be one of the predefined values.
@@ -33,10 +39,10 @@ interface IconProps {
             | 'GreenEnvelope'
 }
 
-const AppIcons: React.FC<IconProps> = ({ name, size }) => {
+const AppIcons: React.FC<IconProps> = ({ name, size, color }) => {
   const { iconMap } = useIcons();
   const IconComponent = iconMap[name];
-  return IconComponent ? <IconComponent size={size} /> : null;
+  return IconComponent ? <IconComponent size={size} color={color} /> : null;
 };
 
 export default AppIcons;

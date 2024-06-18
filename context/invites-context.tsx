@@ -115,16 +115,22 @@ const InvitesContextProvider = ({ children }: InvitesContextProviderProps) => {
 
   const getInvites = async () => {
     // Implementation for fetching invites
+    // To be completed later
+    // Will call an endpoint to get current users invites
   };
 
   const acceptInvite = async (inviteId: string) => {
     console.log(inviteId);
     // Implementation for accepting an invite
+    // To be completed later
+    // Will call an endpoint to accept the invite matching @param { inviteId }
   };
 
   const declineInvites = async (inviteId: string) => {
     console.log(inviteId);
     // Implementation for declining an invite
+    // To be completed later
+    // Will call an endpoint to retrieve the current user's business entity
   };
 
   const contextValues: InviteContextInterface = {

@@ -149,7 +149,7 @@ const BusinessContextProvider = ({ children }: BusinessContextProviderProps): JS
   const [error, setError] = useState<string | null>(null);
 
   /**
-   * Utility function to get the current user's business entity.
+   * Utility function to get the current user's business or organization entity.
    * @returns {BusinessInterface | null} The current business entity.
    */
   const getBusiness = (): BusinessInterface | null => {

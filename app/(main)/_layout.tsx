@@ -29,14 +29,14 @@ export default function MainLayoutController() {
 
   const showAnimation = !appIsReady || !isAnimationFinished;
   const { isAuthenticated } = useAuth();
-  const { primaryBackgroundColorAnimation } = useTheme();
+  const { theme } = useTheme();
 
   return (
-    <Animated.View style={[{ flex: 1 }, primaryBackgroundColorAnimation]}>
+    <Animated.View style={[{ flex: 1, backgroundColor: theme.background.primary }]}>
       {showAnimation ? (
         <AnimatedSplashScreen setIsAnimationFinished={setIsAnimationFinished} />
       ) : (
-        <Animated.View entering={FadeIn.duration(1000)} style={[{ flex: 1 }, primaryBackgroundColorAnimation]}>
+        <Animated.View entering={FadeIn.duration(1600)} style={[{ flex: 1 }]}>
           {isAuthenticated ? (
             <Stack>
               <Stack.Screen name="(main_app)" options={{ headerShown: false }} />

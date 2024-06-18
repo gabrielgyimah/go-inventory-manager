@@ -32,7 +32,6 @@ export default function AnimatedSplashScreen({
       style={[styles(theme).container]}>
       <Animated.View
         entering={FadeInDown.duration(1000)} 
-        exiting={FadeOut.duration(1000)} 
         style={[styles(theme).animatedContainer
       ]}>
           <ShoppinBagIcon height={32} width={32} color={theme.others.white} />

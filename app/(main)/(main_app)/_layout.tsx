@@ -26,7 +26,7 @@ export default function AppLayout() {
     <>
       {!business ? (
         <Stack>
-          <Stack.Screen name='invites'  />
+          <Stack.Screen name='index'  />
         </Stack>
       ) : (
         <Tabs
@@ -43,7 +43,7 @@ export default function AppLayout() {
             }
           }}>
           <Tabs.Screen
-            name="index"
+            name="dashboard"
             options={{
               title: 'Dashboard',
               tabBarIcon: ({ color }) => <DashboardIcon color={color}  size={28} />,

@@ -7,6 +7,8 @@ import { AuthProvider } from '@/context/auth-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { AppIconProvider } from '@/context/app-icon-context';
+import { BusinessContextProvider } from '@/context/business-context';
+import { InvitesContextProvider } from '@/context/invites-context';
 
 export default function RootLayout() {
   return (
@@ -15,7 +17,11 @@ export default function RootLayout() {
         <GestureHandlerRootView>
           <AppIconProvider>
             <BottomSheetModalProvider>
-              <Slot />
+              <BusinessContextProvider>
+                <InvitesContextProvider>
+                  <Slot />
+                </InvitesContextProvider>
+              </BusinessContextProvider>
             </BottomSheetModalProvider>
           </AppIconProvider>
         </GestureHandlerRootView>

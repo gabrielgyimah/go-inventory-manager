@@ -9,8 +9,6 @@ import Animated from 'react-native-reanimated'
 interface BaseContainerProps {
   /** The children to be rendered inside the container. */
   children: React.ReactNode;
-  /** The animated background color style. */
-  backroundColorStyle?: RNAnimated.WithAnimatedValue<any>;
   /** Additional styles for the container. */
   style?: StyleProp<ViewStyle>;
 }
@@ -23,11 +21,10 @@ interface BaseContainerProps {
  */
 const BaseContainer = ({
   children,
-  backroundColorStyle,
   style,
 }: BaseContainerProps): JSX.Element => {
   return (
-    <Animated.View style={[style, backroundColorStyle]}>
+    <Animated.View style={[style]}>
       {children}
     </Animated.View>
   );
@@ -53,9 +50,9 @@ const StyledPrimaryContainer = ({
   children,
   style,
 }: ContainerProps): JSX.Element => {
-  const { primaryBackgroundColorAnimation } = useTheme();
+  const { theme } = useTheme();
   return (
-    <BaseContainer backroundColorStyle={primaryBackgroundColorAnimation} style={style}>
+    <BaseContainer style={[{backgroundColor: theme.background.primary}, style]}>
       {children}
     </BaseContainer>
   );
@@ -71,9 +68,9 @@ const StyledSecondaryContainer = ({
   children,
   style,
 }: ContainerProps): JSX.Element => {
-  const { secondaryBackgroundColorAnimation } = useTheme();
+  const { theme } = useTheme();
   return (
-    <BaseContainer backroundColorStyle={secondaryBackgroundColorAnimation} style={style}>
+    <BaseContainer style={[{backgroundColor: theme.background.secondary}, style]}>
       {children}
     </BaseContainer>
   );
@@ -89,9 +86,9 @@ const StyledMutedContainer = ({
   children,
   style,
 }: ContainerProps): JSX.Element => {
-  const { secondaryBackgroundColorAnimation, theme } = useTheme();
+  const { theme } = useTheme();
   return (
-    <BaseContainer backroundColorStyle={secondaryBackgroundColorAnimation} style={[style, {backgroundColor: theme.text.muted}]}>
+    <BaseContainer style={[{backgroundColor: theme.text.muted}, style]}>
       {children}
     </BaseContainer>
   );
@@ -106,10 +103,10 @@ const StyledMutedBorderContainer = ({
   children,
   style,
 }: ContainerProps): JSX.Element => {
-  const { borderMutedColorAnimation, theme } = useTheme();
+  const { theme } = useTheme();
   return (
-    <BaseContainer backroundColorStyle={borderMutedColorAnimation} 
-      style={[style, { borderColor: theme.text.muted, borderWidth: 1}]}
+    <BaseContainer
+      style={[{ borderColor: theme.text.muted, borderRadius: 12, borderWidth: 1}, style]}
     >
       {children}
     </BaseContainer>

@@ -1,44 +1,30 @@
 import React from "react";
 
 import { useTheme } from "@/context/theme-context";
-import { Animated as ReactAnimated } from "react-native";
-import Animated from "react-native-reanimated";
+import { Text, TextStyle } from "react-native";
 
 interface TextBaseProps {
   text: string;
-  boldness: string;
-  fontWeight: number;
-  textAlign?: string;
-  animationType: ReactAnimated.WithAnimatedValue<any>;
+  style?: TextStyle,
   numberOfLines?: number;
   ellipsizeMode?: 'head' | 'middle' | 'tail' | 'clip';
 }
 
 export const TextBase = ({
   text,
-  boldness,
-  fontWeight,
-  animationType,
-  textAlign,
+  style,
   numberOfLines,
   ellipsizeMode
 }: TextBaseProps) => {
 
   return (
-    <Animated.Text
-      style={[
-        { 
-          fontWeight: boldness, 
-          fontSize: fontWeight, 
-          textAlign: textAlign,
-        }, 
-        animationType,
-      ]}
+    <Text
+      style={style}
       numberOfLines={numberOfLines}
       ellipsizeMode={ellipsizeMode}
     >
       {text}
-    </Animated.Text>
+    </Text>
   );
 };
 
@@ -46,205 +32,189 @@ export const TextBase = ({
 
 interface StyledTextProps {
   text: string;
-  textAlign?: string;
+  style?: TextStyle,
   numberOfLines?: number;
   ellipsizeMode?: 'head' | 'middle' | 'tail' | 'clip';
 }
 
-export const StyledH1PrimaryText = ({ text, textAlign, numberOfLines, ellipsizeMode }: StyledTextProps) => {
-  const { primaryTextColorAnimation } = useTheme();
+export const StyledH1PrimaryText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={32}
+      style={{ fontSize: 32, fontWeight: '700', color: theme.text.primary, ...style}}
       numberOfLines={numberOfLines}
       ellipsizeMode={ellipsizeMode}
-      animationType={primaryTextColorAnimation}
     />
   );
 };
 
-export const StyledH1MutedText = ({ text, textAlign }: StyledTextProps) => {
-  const { mutedTextColorAnimation } = useTheme();
+export const StyledH1MutedText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={32}
-      animationType={mutedTextColorAnimation}
+      style={{ fontSize: 32, fontWeight: '700', color: theme.text.muted, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledH2PrimaryText = ({ text, textAlign }: StyledTextProps) => {
-  const { primaryTextColorAnimation } = useTheme();
+export const StyledH2PrimaryText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={28}
-      animationType={primaryTextColorAnimation}
+      style={{ fontSize: 28, fontWeight: '700', color: theme.text.primary, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledH2MutedText = ({ text, textAlign }: StyledTextProps) => {
-  const { mutedTextColorAnimation } = useTheme();
+export const StyledH2MutedText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={28}
-      animationType={mutedTextColorAnimation}
+      style={{ fontSize: 28, fontWeight: '700', color: theme.text.muted, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledH3PrimaryText = ({ text, textAlign }: StyledTextProps) => {
-  const { primaryTextColorAnimation } = useTheme();
+export const StyledH3PrimaryText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={24}
-      animationType={primaryTextColorAnimation}
+      style={{ fontSize: 24, fontWeight: '700', color: theme.text.primary, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledH3MutedText = ({ text, textAlign }: StyledTextProps) => {
-  const { mutedTextColorAnimation } = useTheme();
+export const StyledH3MutedText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={24}
-      animationType={mutedTextColorAnimation}
+      style={{ fontSize: 24, fontWeight: '700', color: theme.text.muted, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledH4PrimaryText = ({ text, textAlign }: StyledTextProps) => {
-  const { primaryTextColorAnimation } = useTheme();
+export const StyledH4PrimaryText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={20}
-      animationType={primaryTextColorAnimation}
+      style={{ fontSize: 20, fontWeight: '700', color: theme.text.primary, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledH4MutedText = ({ text, textAlign }: StyledTextProps) => {
-  const { mutedTextColorAnimation } = useTheme();
+export const StyledH4MutedText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={20}
-      animationType={mutedTextColorAnimation}
+      style={{ fontSize: 20, fontWeight: '700', color: theme.text.muted, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledH5PrimaryText = ({ text, textAlign }: StyledTextProps) => {
-  const { primaryTextColorAnimation } = useTheme();
+export const StyledH5PrimaryText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={16}
-      animationType={primaryTextColorAnimation}
+      style={{ fontSize: 16, fontWeight: '700', color: theme.text.primary, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledH5MutedText = ({ text, textAlign }: StyledTextProps) => {
-  const { mutedTextColorAnimation } = useTheme();
+export const StyledH5MutedText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={16}
-      animationType={mutedTextColorAnimation}
+      style={{ fontSize: 16, fontWeight: '500', color: theme.text.muted, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledH6PrimaryText = ({ text, textAlign }: StyledTextProps) => {
-  const { primaryTextColorAnimation } = useTheme();
+export const StyledH6PrimaryText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={12}
-      animationType={primaryTextColorAnimation}
+      style={{ fontSize: 12, fontWeight: '500', color: theme.text.primary, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledH6MutedText = ({ text, textAlign }: StyledTextProps) => {
-  const { mutedTextColorAnimation } = useTheme();
+export const StyledH6MutedText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="700"
-      fontWeight={12}
-      animationType={mutedTextColorAnimation}
+      style={{ fontSize: 12, fontWeight: '500', color: theme.text.muted, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledBodyPrimaryText = ({ text, textAlign }: StyledTextProps) => {
-  const { primaryTextColorAnimation } = useTheme();
+export const StyledBodyPrimaryText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="normal"
-      fontWeight={16}
-      animationType={primaryTextColorAnimation}
+      style={{ fontSize: 16, fontWeight: 'normal', color: theme.text.primary, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
 };
 
-export const StyledBodyMutedText = ({ text, textAlign }: StyledTextProps) => {
-  const { mutedTextColorAnimation } = useTheme();
+export const StyledBodyMutedText = ({ text, style, numberOfLines, ellipsizeMode }: StyledTextProps) => {
+  const { theme } = useTheme();
 
   return (
     <TextBase
       text={text}
-      textAlign={textAlign}
-      boldness="normal"
-      fontWeight={16}
-      animationType={mutedTextColorAnimation}
+      style={{ fontSize: 16, fontWeight: 'normal', color: theme.text.muted, ...style}}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     />
   );
-}
+};

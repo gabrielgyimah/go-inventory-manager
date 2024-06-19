@@ -1,18 +1,11 @@
-import React, { useEffect } from 'react';
-import { SafeAreaView, StyleSheet, View, Text, ActivityIndicator, TextInput, Button, Image } from 'react-native';
-import { Stack } from 'expo-router';
-import { useTheme } from '@/context/theme-context';
-import Animated from 'react-native-reanimated';
-import { useInvites } from '@/context/invites-context';
-import GreenButton from '@/components/app/ui/buttons/green-button';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
+import React from 'react'
+import { StyledPrimaryContainer } from '@/components/app/ui/styled-components/style-container'
+import CreateOrganizationForm from '@/components/app/organization/create-organization-form'
 
-const CreateOrganizationScreen: React.FC = () => {
-    return(
-        <Animated.View></Animated.View>
-    )
-};
-export default CreateOrganizationScreen
+export default function CreateOrganizationScreen() {
+  return (
+    <StyledPrimaryContainer style={{ flex: 1}}>
+        <CreateOrganizationForm />
+    </StyledPrimaryContainer>
+  )
+}

@@ -15,6 +15,7 @@ import Animated from 'react-native-reanimated';
 import { StyledBodyMutedText } from './styled-components/style-texts';
 import CountryPicker, { CountryCode } from 'react-native-country-picker-modal';
 import CountryFlag from 'react-native-country-picker-modal';
+import { StyledPrimaryContainer } from './styled-components/style-container';
 
 export interface PhoneNumberInputProps {
   countryCode: string;
@@ -94,10 +95,10 @@ const PhoneNumberInput = ({
               <CountryFlag countryCode={country.cca2} />
             )}
         </View>
-        <Animated.View style={[styles.inputLabel, primaryBackgroundColorAnimation]}>
+        <StyledPrimaryContainer style={[styles.inputLabel]}>
           <StyledBodyMutedText text='Phone Number'/>
           <Ionicons size={8} name='star' color={theme.status.valid}/>
-        </Animated.View>
+        </StyledPrimaryContainer>
         <View style={{ flexDirection: 'row', gap: 8, justifyContent: 'space-between', alignItems: 'center', flex: 1 }}>
           <View style={{ flex: 1 }}>
             <Text style={{ color: theme.text.muted }}>

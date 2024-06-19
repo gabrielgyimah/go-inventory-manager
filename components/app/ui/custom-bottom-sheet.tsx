@@ -81,7 +81,7 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>((props, mapShe
       backgroundStyle={[{
         backgroundColor: customBackgroundColor || 'transparent',
         borderRadius: customBorderRadius || 16,
-      }, customBackgroundColor ? primaryBackgroundColorAnimation : null]}
+      }]}
     >
       <BottomSheetScrollView style={{ flex: 1 }}>
         {title && (

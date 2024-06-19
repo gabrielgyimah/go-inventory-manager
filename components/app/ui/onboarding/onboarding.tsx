@@ -38,7 +38,7 @@ export default function Onboarding() {
           <View style={{ padding: 12, maxWidth: 600, gap: 20, justifyContent: 'center', alignItems: 'center'}}>
             <OnBoardingIllustrationOne />
             <SectionDescription 
-              textAlign='center' title='Instantly View inventory Data' 
+              title='Instantly View inventory Data' 
               text='Access a comprehensive dashboard that provides real-time insights into all your products.'
             />
           </View>
@@ -48,7 +48,7 @@ export default function Onboarding() {
           <View style={{ padding: 12, maxWidth: 600, gap: 20, justifyContent: 'center', alignItems: 'center'}}>
             <OnBoardingIllustrationTwo />
             <SectionDescription 
-              textAlign='center' title='Control Inventory' 
+              title='Control Inventory' 
               text='Easily identify which items are low or out of stock with stock updates'
             />
           </View>
@@ -58,7 +58,7 @@ export default function Onboarding() {
           <View style={{ padding: 12, maxWidth: 600, gap: 20, justifyContent: 'center', alignItems: 'center'}}>
             <OnBoardingIllustrationThree />
             <SectionDescription 
-              textAlign='center' title='Find Products in a Snap' 
+              title='Find Products in a Snap' 
               text='Save time and quickly find and collect products within your store.'
             />
           </View>
@@ -68,7 +68,7 @@ export default function Onboarding() {
           <View style={{ padding: 12, maxWidth: 600, gap: 20, justifyContent: 'center', alignItems: 'center'}}>
             <OnBoardingIllustrationFour />
             <SectionDescription 
-              textAlign='center' title='Detailed Transaction History' 
+              title='Detailed Transaction History' 
               text='Track every sale, return, and stock adjustment to keep a clear and detailed record of your store.'
             />
           </View>
@@ -91,22 +91,18 @@ export default function Onboarding() {
 }
 
 interface SectionDescriptionProps {
-  textAlign?: string;
   title: string;
   text: string;
 }
 
 const SectionDescription = ({
-  textAlign,
   title,
   text,
 }: SectionDescriptionProps) => {
   return (
     <View style={{ gap: 8}}>
-      <StyledH3MutedText textAlign={textAlign} text={title} />
-      <StyledBodyMutedText textAlign={textAlign} 
-        text={text}
-      />
+      <StyledH3PrimaryText text={title} />
+      <StyledBodyMutedText text={text} />
     </View>
   )
 }

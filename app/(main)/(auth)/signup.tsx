@@ -12,9 +12,10 @@ import PhoneNumberInput from '@/components/app/ui/phone-number';
 import GreenButton from '@/components/app/ui/buttons/green-button';
 import SocialSignIns from '@/components/app/auth/social-sign-ins';
 import { StyledBodyMutedText, StyledBodyPrimaryText } from '@/components/app/ui/styled-components/style-texts';
+import { StyledMutedBorderContainer, StyledPrimaryContainer } from '@/components/app/ui/styled-components/style-container';
 
 export default function SignupScreen() {
-  const { theme, primaryBackgroundColorAnimation, borderMutedColorAnimation } = useTheme();
+  const { theme } = useTheme();
   const [showPassword, setShowPassword] = useState(false);
   const [countryCode, setCountryCode] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -34,8 +35,8 @@ export default function SignupScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Animated.View style={[styles.container, primaryBackgroundColorAnimation]}>
+    <StyledPrimaryContainer style={{ flex: 1 }}>
+      <View style={[styles.container]}>
         <AuthCard 
           title='Welcome to Go. Inventory' 
           description='Let’s get you started on your inventory system' 
@@ -43,12 +44,12 @@ export default function SignupScreen() {
           navigationDescrtiption='Already registered? '
           navigationLink='(auth)/login'
         >
-          <Animated.View style={[styles.inputContainer, borderMutedColorAnimation]}>
+          <StyledMutedBorderContainer style={[styles.inputContainer]}>
             <MailIcon />
-            <Animated.View style={[styles.inputLabel, primaryBackgroundColorAnimation]}>
+            <View style={[styles.inputLabel]}>
               <StyledBodyMutedText text='Email Address' />
               <Ionicons size={8} name='star' color={theme.status.valid}/>
-            </Animated.View>
+            </View>
             <TextInput 
               placeholder='Email Address'
               style={{ flex: 1, color: theme.text.primary }}  
@@ -58,10 +59,10 @@ export default function SignupScreen() {
               keyboardType='email-address'
               autoCapitalize='none'
             />
-          </Animated.View>
+          </StyledMutedBorderContainer>
 
           {/** Phone Number */}
-          <Animated.View style={[styles.inputContainer, borderMutedColorAnimation]}>
+          <StyledMutedBorderContainer style={[styles.inputContainer]}>
             <PhoneNumberInput 
               areaCode={callingCode}
               countryCode={countryCode} 
@@ -70,15 +71,15 @@ export default function SignupScreen() {
               setAreaCode={setCallingCode}
               setCountryCode={setCountryCode}
             />
-          </Animated.View>
+          </StyledMutedBorderContainer>
 
           {/** Password */}
-          <Animated.View style={[styles.inputContainer, borderMutedColorAnimation]}>
+          <StyledMutedBorderContainer style={[styles.inputContainer]}>
             <LockIcon />
-            <Animated.View style={[styles.inputLabel, primaryBackgroundColorAnimation]}>
+            <View style={[styles.inputLabel]}>
               <StyledBodyMutedText text='Password'/>
               <Ionicons size={8} name='star' color={theme.status.valid}/>
-            </Animated.View>
+            </View>
             <TextInput 
               style={{ flex: 1, color: theme.text.primary }} 
               secureTextEntry={!showPassword} 
@@ -95,7 +96,7 @@ export default function SignupScreen() {
             >
               <Ionicons name={showPassword ? 'eye' : 'eye-off'} color={theme.text.muted} size={24} />
             </TouchableOpacity>
-          </Animated.View>
+          </StyledMutedBorderContainer>
 
           {/** Terms and Conditions */}
           <Link href='/terms-conditions' style={{ flexDirection: 'row' }}>
@@ -108,8 +109,8 @@ export default function SignupScreen() {
           <GreenButton onPressHandler={submitSignupHandler} title='Sign up' />
           <SocialSignIns title='Sign up with' />
         </AuthCard>
-      </Animated.View>
-    </SafeAreaView>
+      </View>
+    </StyledPrimaryContainer>
   );
 }
 

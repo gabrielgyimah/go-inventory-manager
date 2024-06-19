@@ -7,7 +7,7 @@ import InventoryIcon from '@/components/app/ui/svgs-as-icons/inventory-icon';
 import DashboardIcon from '@/components/app/ui/svgs-as-icons/dashboard-icon';
 import ReportsIcon from '@/components/app/ui/svgs-as-icons/reports-icon';
 import SettingsIcon from '@/components/app/ui/svgs-as-icons/settings-icon';
-import { useBusiness } from '@/context/business-context';
+import { useOrganization } from '@/context/organization-context';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -20,11 +20,11 @@ function TabBarIcon(props: {
 export default function AppLayout() {
   const { isAuthenticated } = useAuth()
   const { theme, primaryBackgroundColorAnimation } = useTheme()
-  const { business } = useBusiness()
+  const { organization } = useOrganization()
 
   return (
     <>
-      {!business ? (
+      {!organization ? (
         <Stack>
           <Stack.Screen name='index' options={{title: ''}}  />
           <Stack.Screen name='create-organization' options={{title: ''}}  />

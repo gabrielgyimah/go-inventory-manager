@@ -1,22 +1,18 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { useTheme } from '@/context/theme-context';
-import { Theme } from '@/interfaces/theme-interface';
-import Animated from 'react-native-reanimated';
 import Onboarding from '@/components/app/ui/onboarding/onboarding';
+import { StyledPrimaryContainer } from '@/components/app/ui/styled-components/style-container';
 
 export default function AuthOnBoardingScreen() {
-  const { theme, primaryBackgroundColorAnimation } = useTheme()
-
   return (
-    <Animated.View style={[styles(theme).container, primaryBackgroundColorAnimation]}>
+    <StyledPrimaryContainer style={styles.container}>
       <Onboarding />
-    </Animated.View>
+    </StyledPrimaryContainer>
   );
 }
 
-const styles = (theme: Theme) => StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',

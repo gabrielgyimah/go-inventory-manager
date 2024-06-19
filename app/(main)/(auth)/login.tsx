@@ -1,13 +1,10 @@
-import { SafeAreaView, StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import { View } from '@/components/Themed';
 import AuthCard from '@/components/app/auth/auth-card';
 import { useTheme } from '@/context/theme-context';
-import { Theme } from '@/interfaces/theme-interface';
-import Animated from 'react-native-reanimated';
 import MailIcon from '@/components/app/ui/svgs-as-icons/mail-icon';
-import { StyledBodyMutedText, StyledBodyPrimaryText } from '@/components/app/ui/styled-components/style-texts';
+import { StyledBodyMutedText,} from '@/components/app/ui/styled-components/style-texts';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useState } from 'react';
@@ -15,9 +12,8 @@ import LockIcon from '@/components/app/ui/svgs-as-icons/lock-icon';
 import { Link, router } from 'expo-router';
 import GreenButton from '@/components/app/ui/buttons/green-button';
 import SocialSignIns from '@/components/app/auth/social-sign-ins';
-import ThemeSettingsButton from '@/components/app/settings/theme-settings-button';
-import PhoneNumberInput from '@/components/app/ui/phone-number';
 import React from 'react';
+import { StyledMutedBorderContainer, StyledPrimaryContainer } from '@/components/app/ui/styled-components/style-container';
 
 export default function LoginScreen() {
   const { theme, primaryBackgroundColorAnimation, borderMutedColorAnimation } = useTheme()
@@ -34,8 +30,8 @@ export default function LoginScreen() {
   }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <Animated.View style={[styles.container, primaryBackgroundColorAnimation]}>
+    <StyledPrimaryContainer style={{flex: 1}}>
+      <View style={styles.container}>
         <AuthCard 
           title='Welcome Back' 
           description='View your store health with Go. Inventory'
@@ -43,12 +39,12 @@ export default function LoginScreen() {
           navigationDescrtiption='Not yet registered? '
           navigationLink='(auth)/signup'
         >
-          <Animated.View style={[styles.inputContainer, borderMutedColorAnimation]}>
+          <StyledMutedBorderContainer style={[styles.inputContainer]}>
             <MailIcon />
-            <Animated.View style={[styles.inputLabel, primaryBackgroundColorAnimation]}>
+            <View style={styles.inputLabel}>
               <StyledBodyMutedText text='Email Address'/>
               <Ionicons size={8} name='star' color={theme.status.valid}/>
-            </Animated.View>
+            </View>
             <TextInput 
               placeholder='Email Address'
               style={{ flex: 1, color: theme.text.primary }}  
@@ -58,15 +54,15 @@ export default function LoginScreen() {
               keyboardType='email-address'
               autoCapitalize='none'
             />
-          </Animated.View>
+          </StyledMutedBorderContainer>
 
           {/** Password */}
-          <Animated.View style={[styles.inputContainer, borderMutedColorAnimation]}>
+          <StyledMutedBorderContainer style={[styles.inputContainer]}>
             <LockIcon />
-            <Animated.View style={[styles.inputLabel, primaryBackgroundColorAnimation]}>
+            <View style={styles.inputLabel}>
               <StyledBodyMutedText text='Password'/>
               <Ionicons size={8} name='star' color={theme.status.valid}/>
-            </Animated.View>
+            </View>
             <TextInput 
               style={{ flex: 1, color: theme.text.primary }} 
               secureTextEntry={!showPassword} 
@@ -83,13 +79,13 @@ export default function LoginScreen() {
             >
               <Ionicons name={showPassword ? 'eye' : 'eye-off'} color={theme.text.muted} size={24} />
             </TouchableOpacity>
-          </Animated.View>
+          </StyledMutedBorderContainer>
 
           <GreenButton onPressHandler={submitLoginHandler} title='Login up' />
           <SocialSignIns title='Login with' />
         </AuthCard>
-      </Animated.View>
-    </SafeAreaView>
+      </View>
+    </StyledPrimaryContainer>
   );
 }
 

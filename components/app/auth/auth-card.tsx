@@ -27,7 +27,7 @@ export default function AuthCard({
   const { primaryBackgroundColorAnimation, theme } = useTheme()
 
   return (
-    <Animated.View style={[styles.container, primaryBackgroundColorAnimation]}>
+    <View style={[styles.container]}>
       <View>
         <StyledH3PrimaryText text={title} />
         <StyledBodyMutedText text={description} />
@@ -38,12 +38,12 @@ export default function AuthCard({
           <Link href={navigationLink} style={{
             flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
           }}>
-            <StyledBodyMutedText text={navigationDescrtiption} textAlign='center'/>
+            <StyledBodyMutedText text={navigationDescrtiption} style={{ textAlign: 'center'}}/>
             <Text style={{ fontWeight: '700', color: theme.status.valid}}>{navigationTitle}</Text>
           </Link>
         )}
       </View>
-    </Animated.View>
+    </View>
   )
 }
 

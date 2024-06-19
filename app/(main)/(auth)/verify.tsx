@@ -8,9 +8,10 @@ import ThemeSettingsButton from '@/components/app/settings/theme-settings-button
 import Animated from 'react-native-reanimated';
 import Countdown from '@/components/app/ui/count-down';
 import { useAuth } from '@/context/auth-context';
+import { StyledPrimaryContainer } from '@/components/app/ui/styled-components/style-container';
 
 const VerificationScreen: React.FC = () => {
-  const { theme, primaryBackgroundColorAnimation } = useTheme();
+  const { theme } = useTheme();
   const [otp, setOtp] = useState<string[]>(Array(6).fill(''));
   const [resetTime, setResetTime] = useState('0:59');
   const inputRefs = useRef<(TextInput | null)[]>([]);
@@ -48,14 +49,14 @@ const VerificationScreen: React.FC = () => {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <StyledPrimaryContainer style={{ flex: 1 }}>
       <Stack.Screen 
         options={{ 
           headerShown: true, headerTitle: '', headerBackTitle: '',
           headerStyle: { backgroundColor: theme.background.primary }
         }} 
       />
-      <Animated.View style={[styles.container, primaryBackgroundColorAnimation]}>
+      <View style={[styles.container]}>
         <AuthCard 
           title='Verification' 
           description='A 6 digit OTP was sent to your registered email address. Input here to continue' 
@@ -88,8 +89,8 @@ const VerificationScreen: React.FC = () => {
           )}
           <Button title="Verify" onPress={handleVerify} />
         </AuthCard>
-      </Animated.View>
-    </SafeAreaView>
+      </View>
+    </StyledPrimaryContainer>
   );
 };
 

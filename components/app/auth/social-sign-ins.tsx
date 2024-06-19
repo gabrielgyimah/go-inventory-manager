@@ -25,7 +25,8 @@ export default function SocialSignIns({
         <Animated.View 
           style={[{
             position: 'absolute', top: -8, alignSelf: 'center', paddingHorizontal: 10,
-          }, primaryBackgroundColorAnimation]}>
+            backgroundColor: theme.background.primary
+          }]}>
           <StyledBodyPrimaryText text={title} />
         </Animated.View>
       </View>
@@ -33,7 +34,8 @@ export default function SocialSignIns({
         <View style={{flex: 1}}>
           <BorderedButton 
             title='Google' 
-            icon={<Ionicons name='logo-google' size={28} color={theme.text.primary} />} 
+            icon={<Ionicons name='logo-google' size={28} color={theme.text.primary} />}
+            TextStyle={{ color: theme.text.primary}}
             onPressHandler={handleGoogleSignOn} 
           />
         </View>
@@ -41,6 +43,7 @@ export default function SocialSignIns({
           <BorderedButton 
             icon={<Ionicons name='logo-apple' size={28} color={theme.text.primary} />} 
             title='Apple' 
+            TextStyle={{ color: theme.text.primary}}
             onPressHandler={handleAppleSignOn} 
           />
         </View>

@@ -33,7 +33,7 @@ const lightTheme: Theme = {
 
 const darkTheme: Theme = {
   background: {
-    primary: '#1F1F1F',
+    primary: '#000000',
     secondary: '#292929',
     tertiary: '#333333',
   },

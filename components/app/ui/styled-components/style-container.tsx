@@ -80,6 +80,23 @@ const StyledSecondaryContainer = ({
 };
 
 /**
+ * A container component with Muted background color animation.
+ *
+ * @param {ContainerProps} props - The props for the component.
+ * @returns {JSX.Element} The rendered component.
+ */
+const StyledMutedContainer = ({
+  children,
+  style,
+}: ContainerProps): JSX.Element => {
+  const { secondaryBackgroundColorAnimation, theme } = useTheme();
+  return (
+    <BaseContainer backroundColorStyle={secondaryBackgroundColorAnimation} style={[style, {backgroundColor: theme.text.muted}]}>
+      {children}
+    </BaseContainer>
+  );
+};
+/**
  * A container component with muted border color animation.
  *
  * @param {ContainerProps} props - The props for the component.
@@ -100,5 +117,6 @@ const StyledMutedBorderContainer = ({
 export {
   StyledPrimaryContainer,
   StyledSecondaryContainer,
-  StyledMutedBorderContainer
+  StyledMutedBorderContainer,
+  StyledMutedContainer
 };

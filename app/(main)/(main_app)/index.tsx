@@ -9,25 +9,34 @@ import { useNavigation } from '@react-navigation/native';
 import { useInvites } from '@/context/invites-context';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
+import AppIcons from '@/components/app/ui/icons/app-icons';
+import { router } from 'expo-router';
+import { StyledMutedContainer, StyledPrimaryContainer } from '@/components/app/ui/styled-components/style-container';
+import { StyledBodyMutedText, StyledH1PrimaryText, StyledH2PrimaryText } from '@/components/app/ui/styled-components/style-texts';
 
 const InvitesScreen: React.FC = () => {
   const { theme, primaryBackgroundColorAnimation } = useTheme();
   const { invites, getInvites, acceptInvite, declineInvites } = useInvites();
-  const navigation = useNavigation();
+
+  useEffect(() => {
+    getInvites();
+  }, []);
+
 
   const handleCreateOrganization = () => {
+    router.navigate('create-organization')
   };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={[styles.container]}>
+      <View style={[styles.container, primaryBackgroundColorAnimation]}>
         <View style={styles.headerContainer}>
-          <Text style={styles.headerText}>Invites</Text>
-          <Text style={styles.headerDescription}>Check out the latest invites from businesses</Text>
+          <StyledH1PrimaryText  text='Invites' />
+          <StyledBodyMutedText text='View invites from team members to join their inventory system'/>
         </View>
         {invites.length === 0 ? (
           <View style={styles.emptyContainer}>
-            <NoInviteIcon width={200} height={200} style={styles.emptyImage} />
+            <StyledMutedContainer style={styles.envelope}><AppIcons name='GreenEnvelope' /></StyledMutedContainer>
             <Text style={styles.emptyText}>No invites available</Text>
             <GreenButton onPressHandler={handleCreateOrganization} title='Create Your Own Organization' />
           </View>
@@ -37,8 +46,8 @@ const InvitesScreen: React.FC = () => {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
               <View style={styles.inviteCard}>
-                <Text style={styles.inviteText}>{item.businessName}</Text>
-                <Text style={styles.inviteText}>{item.message}</Text>
+                <StyledH2PrimaryText text={item.businessName}/>
+                <StyledBodyMutedText text={item.message} />
                 <View style={styles.buttonContainer}>
                   <GreenButton title="Accept" onPressHandler={() => acceptInvite(item.id)} />
                   <BorderedButton title="Decline" onPressHandler={() => declineInvites(item.id)} />
@@ -47,12 +56,17 @@ const InvitesScreen: React.FC = () => {
             )}
           />
         )}
-      </View>
-    </SafeAreaView>
+      </StyledPrimaryContainer>
   );
 };
 
 const styles = StyleSheet.create({
+  envelope:{
+    padding: 60,
+    borderRadius: 500,
+    justifyContent: 'center',
+    flex: 0.3
+  },
   container: {
     flex: 1,
     padding: 16,

@@ -26,7 +26,9 @@ export default function AppLayout() {
     <>
       {!business ? (
         <Stack>
-          <Stack.Screen name='index'  />
+          <Stack.Screen name='index' options={{title: ''}}  />
+          <Stack.Screen name='create-organization' options={{title: ''}}  />
+
         </Stack>
       ) : (
         <Tabs

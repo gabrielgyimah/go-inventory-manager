@@ -2,6 +2,7 @@
   "expo": {
     "name": "go-inventory-manager",
     "slug": "go-inventory-manager",
+    "owner": "go-inventory-manager",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -13,7 +14,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ericwillcampbell3.goinventorymanager"
     },
     "android": {
       "adaptiveIcon": {
@@ -38,7 +40,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "d807f9ee-3d8a-439a-849a-cca3ef4a342f"
+        "projectId": "900740d4-80e4-4804-8601-f59747a55d23"
       }
     }
   }

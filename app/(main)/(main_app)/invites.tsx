@@ -1,16 +1,23 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, StyleSheet, View, Text, ActivityIndicator, FlatList, Button, Image } from 'react-native';
-import { Stack } from 'expo-router';
-import { useTheme } from '@/context/theme-context';
+import { SafeAreaView, StyleSheet, View, Text, ActivityIndicator, FlatList } from 'react-native';
 import Animated from 'react-native-reanimated';
+import { useTheme } from '@/context/theme-context';
+import NoInviteIcon from '../../../components/app/ui/svgs-as-icons/no-invites';
+import GreenButton from '@/components/app/ui/buttons/green-button';
+import BorderedButton from '../../../components/app/ui/buttons/bordered-buttons';
+import { useNavigation } from '@react-navigation/native';
 import { useInvites } from '@/context/invites-context';
-import NoInviteIcon from '../ui/svgs-as-icons/no-invites';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useFonts } from 'expo-font';
 
 const InvitesScreen: React.FC = () => {
   const { theme, primaryBackgroundColorAnimation } = useTheme();
-  const { invites, loading, error, getInvites, acceptInvite, declineInvites } = useInvites();
+  const { invites, getInvites, acceptInvite, declineInvites } = useInvites();
+  const navigation = useNavigation();
+  const [loading, error] = useFonts({
+    SpaceMono: require('@/assets/fonts/Satoshi-Medium.ttf'),
+    ...FontAwesome.font,
+  });
 
   useEffect(() => {
     getInvites();
@@ -24,22 +31,12 @@ const InvitesScreen: React.FC = () => {
     );
   }
 
-  if (error) {
-    return (
-      <SafeAreaView style={[styles.container, primaryBackgroundColorAnimation]}>
-        <Text style={styles.errorText}>{error}</Text>
-      </SafeAreaView>
-    );
-  }
+  const handleCreateOrganization = () => {
+    navigation.navigate('create-organization'); // Navigate to CreateOrganizationScreen
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Stack.Screen 
-        options={{ 
-          headerShown: true, headerTitle: 'Invites', headerBackTitle: '',
-          headerStyle: { backgroundColor: theme.background.primary }
-        }} 
-      />
       <Animated.View style={[styles.container, primaryBackgroundColorAnimation]}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}>Invites</Text>
@@ -49,9 +46,7 @@ const InvitesScreen: React.FC = () => {
           <View style={styles.emptyContainer}>
             <NoInviteIcon width={200} height={200} style={styles.emptyImage} />
             <Text style={styles.emptyText}>No invites available</Text>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Create Your Own Inventory</Text>
-            </TouchableOpacity>
+            <GreenButton onPressHandler={handleCreateOrganization} title='Create Your Own Organization' />
           </View>
         ) : (
           <FlatList
@@ -62,8 +57,8 @@ const InvitesScreen: React.FC = () => {
                 <Text style={styles.inviteText}>{item.businessName}</Text>
                 <Text style={styles.inviteText}>{item.message}</Text>
                 <View style={styles.buttonContainer}>
-                  <Button title="Accept" onPress={() => acceptInvite(item.id)} />
-                  <Button title="Decline" onPress={() => declineInvites(item.id)} />
+                  <GreenButton title="Accept" onPressHandler={() => acceptInvite(item.id)} />
+                  <BorderedButton title="Decline" onPressHandler={() => declineInvites(item.id)} />
                 </View>
               </View>
             )}
@@ -125,17 +120,6 @@ const styles = StyleSheet.create({
     color: 'red',
     textAlign: 'center',
     marginTop: 20,
-  },
-  button: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: 'bold',
   },
 });
 

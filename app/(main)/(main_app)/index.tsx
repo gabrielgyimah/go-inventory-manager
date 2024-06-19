@@ -62,16 +62,12 @@ const InvitesScreen: React.FC = () => {
 const styles = StyleSheet.create({
   envelope:{
     padding: 60,
-    borderRadius: 500,
+    borderRadius: 300,
     justifyContent: 'center',
-    flex: 0.3
-  },
-  container: {
-    flex: 1,
-    padding: 16,
+    flex: 0.2
   },
   headerContainer: {
-    marginBottom: 16,
+    
   },
   headerText: {
     fontSize: 24,

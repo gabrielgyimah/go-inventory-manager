@@ -28,8 +28,7 @@ const InvitesScreen: React.FC = () => {
   };
 
   return (
-    <StyledPrimaryContainer style={{ flex: 1 }}>
-      <View style={[styles.container]}>
+      <StyledPrimaryContainer>
         <View style={styles.headerContainer}>
           <StyledH1PrimaryText  text='Invites' />
           <StyledBodyMutedText text='View invites from team members to join their inventory system'/>
@@ -63,16 +62,12 @@ const InvitesScreen: React.FC = () => {
 const styles = StyleSheet.create({
   envelope:{
     padding: 60,
-    borderRadius: 500,
+    borderRadius: 300,
     justifyContent: 'center',
-    flex: 0.3
-  },
-  container: {
-    flex: 1,
-    padding: 16,
+    flex: 0.2
   },
   headerContainer: {
-    marginBottom: 16,
+    
   },
   headerText: {
     fontSize: 24,

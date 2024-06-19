@@ -143,7 +143,9 @@ const PhoneNumberInput = ({countryCode, setCountryCode, setAreaCode, phoneNumber
             withDarkTheme
             withShadow
             autoFocus
-            onChangeCountry={(cnt) => {}}
+            onChangeCountry={(cnt) => {
+              console.log({ cnt })
+            }}
           />
           <TouchableOpacity
             style={styles.button}

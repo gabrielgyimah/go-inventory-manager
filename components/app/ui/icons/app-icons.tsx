@@ -36,7 +36,8 @@ interface IconProps {
             | 'office-supplies' | 'cleaning-supplies' | 'personal-care' | 'health' | 'beauty' | 'automotive'
             | 'gardening' | 'outdoor' | 'home-decor' | 'appliances' | 'jewelry' | 'watches' | 'baby-products'
             | 'musical-instruments' | 'stationery' | 'pharmaceuticals' | 'medical-equipment'
-            | 'GreenEnvelope'
+            | 'GreenEnvelope' | 'GreenNoProducts'
+            | 'Televison' | 'Airpods' | 'Speakers' | 'Storage'
 }
 
 const AppIcons: React.FC<IconProps> = ({ name, size, color }) => {

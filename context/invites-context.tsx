@@ -1,5 +1,11 @@
 import React, { createContext, useContext, useState } from "react";
 
+export enum InviteStatus {
+  PENDING,
+  ACCEPTED,
+  DECLINE,
+}
+
 /**
  * Interface representing an invitation to an business.
  * @interface InviteInterface
@@ -31,9 +37,21 @@ export interface InviteInterface {
 
   /**
    * The acceptance status of the invite.
+   * @type {InviteStatus}
+   */
+  status: InviteStatus;
+
+  /**
+   * The acceptance status of the invite.
    * @type {boolean}
    */
-  isAccepted: boolean;
+  isActive: boolean;
+
+  /**
+   * The acceptance status of the invite.
+   * @type {string}
+   */
+  expiresIn: string;
 }
 
 /**

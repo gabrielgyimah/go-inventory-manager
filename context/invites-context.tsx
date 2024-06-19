@@ -3,11 +3,11 @@ import React, { createContext, useContext, useState } from "react";
 export enum InviteStatus {
   PENDING,
   ACCEPTED,
-  DECLINE,
+  DECLINED,
 }
 
 /**
- * Interface representing an invitation to an business.
+ * Interface representing an invitation to an organization.
  * @interface InviteInterface
  */
 export interface InviteInterface {
@@ -18,16 +18,16 @@ export interface InviteInterface {
   id: string;
 
   /**
-   * The name of the business sending the invite.
+   * The name of the organization sending the invite.
    * @type {string}
    */
-  businessName: string;
+  organizationName: string;
 
   /**
-   * The URL of the business's image.
+   * The URL of the organization's image.
    * @type {string}
    */
-  businessImageUrl: string;
+  organizationImageUrl: string;
 
   /**
    * The message included with the invite.
@@ -95,7 +95,7 @@ export interface InviteContextInterface {
   loading: boolean;
 
   /**
-   * Error message if fetching/accepting or declining fails business fails.
+   * Error message if fetching/accepting or declining fails organization fails.
    * @type {string | null}
    */
   error: string | null;
@@ -148,7 +148,7 @@ const InvitesContextProvider = ({ children }: InvitesContextProviderProps) => {
     console.log(inviteId);
     // Implementation for declining an invite
     // To be completed later
-    // Will call an endpoint to retrieve the current user's business entity
+    // Will call an endpoint to retrieve the current user's organization entity
   };
 
   const contextValues: InviteContextInterface = {

@@ -33,13 +33,13 @@ export default function SocialSignIns({
         <View style={{flex: 1}}>
           <BorderedButton 
             title='Google' 
-            icon={<Ionicons name='logo-google' size={28} color={mode === 'light' ? '#000000' : '#FFFFFF'} />} 
+            icon={<Ionicons name='logo-google' size={28} color={theme.text.primary} />} 
             onPressHandler={handleGoogleSignOn} 
           />
         </View>
         <View style={{flex: 1 }}>
           <BorderedButton 
-            icon={<Ionicons name='logo-apple' size={28} color={mode === 'light' ? '#000000' : '#FFFFFF'} />} 
+            icon={<Ionicons name='logo-apple' size={28} color={theme.text.primary} />} 
             title='Apple' 
             onPressHandler={handleAppleSignOn} 
           />

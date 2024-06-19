@@ -10,6 +10,8 @@ interface TextBaseProps {
   fontWeight: number;
   textAlign?: string;
   animationType: ReactAnimated.WithAnimatedValue<any>;
+  numberOfLines?: number;
+  ellipsizeMode?: 'head' | 'middle' | 'tail' | 'clip';
 }
 
 export const TextBase = ({
@@ -18,6 +20,8 @@ export const TextBase = ({
   fontWeight,
   animationType,
   textAlign,
+  numberOfLines,
+  ellipsizeMode
 }: TextBaseProps) => {
 
   return (
@@ -30,6 +34,8 @@ export const TextBase = ({
         }, 
         animationType,
       ]}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     >
       {text}
     </Animated.Text>
@@ -41,9 +47,11 @@ export const TextBase = ({
 interface StyledTextProps {
   text: string;
   textAlign?: string;
+  numberOfLines?: number;
+  ellipsizeMode?: 'head' | 'middle' | 'tail' | 'clip';
 }
 
-export const StyledH1PrimaryText = ({ text, textAlign }: StyledTextProps) => {
+export const StyledH1PrimaryText = ({ text, textAlign, numberOfLines, ellipsizeMode }: StyledTextProps) => {
   const { primaryTextColorAnimation } = useTheme();
 
   return (
@@ -52,6 +60,8 @@ export const StyledH1PrimaryText = ({ text, textAlign }: StyledTextProps) => {
       textAlign={textAlign}
       boldness="700"
       fontWeight={32}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
       animationType={primaryTextColorAnimation}
     />
   );

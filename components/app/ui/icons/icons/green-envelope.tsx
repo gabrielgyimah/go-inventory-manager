@@ -7,9 +7,8 @@ interface GreenEnvelopeProps extends SvgProps {
 
 const GreenEnvelope: React.FC<GreenEnvelopeProps> = ({ size, ...props }) => (
   <Svg
-    width={size | 200}
-    height={size| 200}
-    fill="none"
+    width={110}
+    height={110}
     {...props}
   >
     <Path

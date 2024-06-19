@@ -1,6 +1,6 @@
 import { useTheme } from "@/context/theme-context";
 import React from "react";
-import { Animated as RNAnimated, View, ViewStyle, StyleProp } from "react-native";
+import { Animated as RNAnimated, View, ViewStyle, StyleProp, StyleSheet } from "react-native";
 import Animated from 'react-native-reanimated'
 
 /**
@@ -10,7 +10,7 @@ interface BaseContainerProps {
   /** The children to be rendered inside the container. */
   children: React.ReactNode;
   /** The animated background color style. */
-  backroundColorStyle: RNAnimated.WithAnimatedValue<any>;
+  backroundColorStyle?: RNAnimated.WithAnimatedValue<any>;
   /** Additional styles for the container. */
   style?: StyleProp<ViewStyle>;
 }
@@ -27,7 +27,7 @@ const BaseContainer = ({
   style,
 }: BaseContainerProps): JSX.Element => {
   return (
-    <Animated.View style={[{ flex: 1 }, style, backroundColorStyle]}>
+    <Animated.View style={[style, backroundColorStyle]}>
       {children}
     </Animated.View>
   );
@@ -106,9 +106,11 @@ const StyledMutedBorderContainer = ({
   children,
   style,
 }: ContainerProps): JSX.Element => {
-  const { borderMutedColorAnimation } = useTheme();
+  const { borderMutedColorAnimation, theme } = useTheme();
   return (
-    <BaseContainer backroundColorStyle={borderMutedColorAnimation} style={style}>
+    <BaseContainer backroundColorStyle={borderMutedColorAnimation} 
+      style={[style, { borderColor: theme.text.muted, borderWidth: 1}]}
+    >
       {children}
     </BaseContainer>
   );

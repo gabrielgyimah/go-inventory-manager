@@ -14,29 +14,13 @@ const InvitesScreen: React.FC = () => {
   const { theme, primaryBackgroundColorAnimation } = useTheme();
   const { invites, getInvites, acceptInvite, declineInvites } = useInvites();
   const navigation = useNavigation();
-  const [loading, error] = useFonts({
-    SpaceMono: require('@/assets/fonts/Satoshi-Medium.ttf'),
-    ...FontAwesome.font,
-  });
-
-  useEffect(() => {
-    getInvites();
-  }, []);
-
-  if (loading) {
-    return (
-      <SafeAreaView style={[styles.container, primaryBackgroundColorAnimation]}>
-        <ActivityIndicator size="large" />
-      </SafeAreaView>
-    );
-  }
 
   const handleCreateOrganization = () => {
   };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={[styles.container, primaryBackgroundColorAnimation]}>
+      <View style={[styles.container]}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}>Invites</Text>
           <Text style={styles.headerDescription}>Check out the latest invites from businesses</Text>

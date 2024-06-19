@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, ActivityIndicator, FlatList } from 'react-native';
 import Animated from 'react-native-reanimated';
+import { useTheme } from '@/context/theme-context';
+import NoInviteIcon from '../../../components/app/ui/svgs-as-icons/no-invites';
+import GreenButton from '@/components/app/ui/buttons/green-button';
 import BorderedButton from '../../../components/app/ui/buttons/bordered-buttons';
+import { useNavigation } from '@react-navigation/native';
+import { useInvites } from '@/context/invites-context';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
-import { useInvites } from '@/context/invites-context';
-import { useTheme } from '@/context/theme-context';
-import { useNavigation } from 'expo-router';
 
 const InvitesScreen: React.FC = () => {
   const { theme, primaryBackgroundColorAnimation } = useTheme();
@@ -30,7 +32,7 @@ const InvitesScreen: React.FC = () => {
   }
 
   const handleCreateOrganization = () => {
-    navigation.navigate('create-organization');
+    navigation.navigate('create-organization'); // Navigate to CreateOrganizationScreen
   };
 
   return (

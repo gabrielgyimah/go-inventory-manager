@@ -1,5 +1,11 @@
 import React, { createContext, useContext, useState } from "react";
 
+export enum InviteStatus {
+  PENDING,
+  ACCEPTED,
+  DECLINE,
+}
+
 /**
  * Interface representing an invitation to an business.
  * @interface InviteInterface
@@ -31,9 +37,21 @@ export interface InviteInterface {
 
   /**
    * The acceptance status of the invite.
+   * @type {InviteStatus}
+   */
+  status: InviteStatus;
+
+  /**
+   * The acceptance status of the invite.
    * @type {boolean}
    */
-  isAccepted: boolean;
+  isActive: boolean;
+
+  /**
+   * The acceptance status of the invite.
+   * @type {string}
+   */
+  expiresIn: string;
 }
 
 /**
@@ -69,6 +87,18 @@ export interface InviteContextInterface {
    * Function to retrieve the list of invites.
    */
   getInvites: () => void;
+
+  /**
+   * Indicates whether the users invites is currently being fetched or a an invite is being accepted or declined.
+   * @type {boolean}
+   */
+  loading: boolean;
+
+  /**
+   * Error message if fetching/accepting or declining fails business fails.
+   * @type {string | null}
+   */
+  error: string | null;
 }
 
 /**
@@ -98,19 +128,27 @@ interface InvitesContextProviderProps {
 
 const InvitesContextProvider = ({ children }: InvitesContextProviderProps) => {
   const [invites, setInvites] = useState<InviteInterface[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const getInvites = async () => {
     // Implementation for fetching invites
+    // To be completed later
+    // Will call an endpoint to get current users invites
   };
 
   const acceptInvite = async (inviteId: string) => {
     console.log(inviteId);
     // Implementation for accepting an invite
+    // To be completed later
+    // Will call an endpoint to accept the invite matching @param { inviteId }
   };
 
   const declineInvites = async (inviteId: string) => {
     console.log(inviteId);
     // Implementation for declining an invite
+    // To be completed later
+    // Will call an endpoint to retrieve the current user's business entity
   };
 
   const contextValues: InviteContextInterface = {
@@ -118,7 +156,9 @@ const InvitesContextProvider = ({ children }: InvitesContextProviderProps) => {
     setInvites,
     getInvites,
     acceptInvite,
-    declineInvites
+    declineInvites,
+    loading,
+    error
   };
 
   return (

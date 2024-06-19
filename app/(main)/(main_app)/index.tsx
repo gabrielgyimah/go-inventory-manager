@@ -28,7 +28,8 @@ const InvitesScreen: React.FC = () => {
   };
 
   return (
-      <StyledPrimaryContainer>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={[styles.container, primaryBackgroundColorAnimation]}>
         <View style={styles.headerContainer}>
           <StyledH1PrimaryText  text='Invites' />
           <StyledBodyMutedText text='View invites from team members to join their inventory system'/>

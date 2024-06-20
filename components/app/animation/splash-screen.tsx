@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSpring, FadeIn, FadeInUp, FadeInDown, FadeOut, SlideInLeft, SlideInRight } from 'react-native-reanimated';
 import { useTheme } from '@/context/theme-context';
 import { useTextStyles } from '@/hooks/useTextStyles';
-import ShoppinBagIcon from '../ui/svgs-as-icons/shopping-bag';
+import ShoppinBagIcon from '../ui/icons/icons/shopping-bag-icon';
 import { Theme } from '@/interfaces/theme-interface';
 
 interface AnimatedSplashScreenProps {
@@ -34,7 +34,7 @@ export default function AnimatedSplashScreen({
         entering={FadeInDown.duration(1000)} 
         style={[styles(theme).animatedContainer
       ]}>
-          <ShoppinBagIcon height={32} width={32} color={theme.others.white} />
+          <ShoppinBagIcon size={32} color={theme.others.white} />
         <Text style={[styles(theme).logoText]}>GO. Inventory</Text>
       </Animated.View>
     </Animated.View>

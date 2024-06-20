@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Tabs, router } from 'expo-router'; // Assuming `router` and other imports are correct
 import { useTheme } from '@/context/theme-context';
-import InventoryIcon from '@/components/app/ui/svgs-as-icons/inventory-icon';
+import InventoryIcon from '@/components/app/ui/icons/icons/inventory-icon';
 import DashboardIcon from '@/components/app/ui/svgs-as-icons/dashboard-icon';
 import ReportsIcon from '@/components/app/ui/svgs-as-icons/reports-icon';
 import SettingsIcon from '@/components/app/ui/svgs-as-icons/settings-icon';
@@ -9,6 +9,7 @@ import { Animated, Modal, Pressable, StyleSheet, TouchableOpacity, TouchableWith
 import { Ionicons } from '@expo/vector-icons';
 import { StyledBodyPrimaryText } from '@/components/app/ui/styled-components/style-texts';
 import { useOrganization } from '@/context/organization-context';
+import HomeIcon from '@/components/app/ui/icons/icons/home-icon';
 
 const CustomLayout = ({ children }) => {
   const { theme, mode } = useTheme();
@@ -124,14 +125,14 @@ export default function OrganizationLayout() {
             paddingBottom: 4,
             gap: 8,
             backgroundColor: theme.background.primary
-          }
+          },
         }}
       >
         <Tabs.Screen
           name="index"
           options={{
-            title: 'Dashboard',
-            tabBarIcon: ({ color }) => <DashboardIcon color={color} size={28} />,
+            title: 'Home',
+            tabBarIcon: ({ color }) => <HomeIcon color={color} size={28} />,
           }}
         />
         <Tabs.Screen
@@ -145,7 +146,7 @@ export default function OrganizationLayout() {
         <Tabs.Screen
           name="reports"
           options={{
-            title: 'Report',
+            title: 'Reports',
             tabBarItemStyle: { marginLeft: 14},
             tabBarIcon: ({ color }) => <ReportsIcon color={color} size={28} />,
           }}

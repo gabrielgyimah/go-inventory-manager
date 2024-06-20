@@ -39,7 +39,7 @@ export default function CreateOrganizationForm() {
   const [countryCode, setCountryCode] = useState<CountryCode>('NG')
   const [country, setCountry] = useState<Country | null>(null)
   const [withCountryNameButton, setWithCountryNameButton] = useState<boolean>(
-    false,
+    true,
   )
   const [withFlag, setWithFlag] = useState<boolean>(true)
   const [withEmoji, setWithEmoji] = useState<boolean>(true)

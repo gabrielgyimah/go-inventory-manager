@@ -71,7 +71,7 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>((props, mapShe
       snapPoints={snapPoints}
       enableDynamicSizing
       enablePanDownToClose={isPanDownToCloseEnabled}
-      handleIndicatorStyle={{ backgroundColor: theme.text.muted }}
+      handleIndicatorStyle={{ width: 80, height: 6, marginTop: 6, backgroundColor: theme.text.muted }}
       backdropComponent={renderBackdrop}
       detached={customDetached}
       backgroundComponent={BackgroundComponent}

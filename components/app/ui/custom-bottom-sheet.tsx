@@ -22,7 +22,6 @@ export interface CustomBottomSheetProps {
   customPadding?: number;
   title?: string;
   isPanDownToCloseEnabled?: boolean;
-  showIndicator?: boolean;
 }
 
 export type Ref = BottomSheetModal;
@@ -44,8 +43,7 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>((props, mapShe
     customBorderRadius,
     title,
     customPadding,
-    isPanDownToCloseEnabled = true, // Default to true if not provided
-    showIndicator = true,
+    isPanDownToCloseEnabled = true, // Default to false if not provided
   } = props;
 
   const renderBackdrop = useCallback(
@@ -60,10 +58,6 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>((props, mapShe
     [isPanDownToCloseEnabled]
   );
 
-  useEffect(() => {
-    console.log('Component mounted');
-    console.log({ isPanDownToCloseEnabled });
-  }, [isPanDownToCloseEnabled]);
 
   return (
     <BottomSheetModal
@@ -73,16 +67,10 @@ const CustomBottomSheet = forwardRef<Ref, CustomBottomSheetProps>((props, mapShe
       snapPoints={snapPoints}
       enableDynamicSizing
       enablePanDownToClose={isPanDownToCloseEnabled}
-      handleIndicatorStyle={{ 
-        width: !showIndicator ? 0 : 80, 
-        height: !showIndicator ? 0 : 6, 
-        marginTop: !showIndicator ? 0 : 6, 
-        backgroundColor: !showIndicator ? 'none' : theme.text.muted 
-      }}
+      handleIndicatorStyle={{ width: 80, height: 6, marginTop: 6, backgroundColor: theme.text.muted }}
       backdropComponent={renderBackdrop}
       detached={customDetached}
       backgroundComponent={BackgroundComponent}
-      topInset={showIndicator ? undefined : 0}
       bottomInset={customDetached ? 24 : 0}
       style={{ margin: customDetached ? 12 : 0 }}
       keyboardBlurBehavior='restore'
@@ -129,7 +117,7 @@ const BackgroundComponent: React.FC<BottomSheetBackgroundProps> = ({ style }) =>
     <BlurView
       style={[style, { overflow: 'hidden' }]}
       intensity={40}
-      tint={mode === 'light' ? 'systemChromeMaterialLight' : 'systemThickMaterialDark'}
+      tint={'default'}
     />
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Tabs, router } from 'expo-router'; // Assuming `router` and other imports are correct
 import { useTheme } from '@/context/theme-context';
-import InventoryIcon from '@/components/app/ui/svgs-as-icons/inventory-icon';
+import InventoryIcon from '@/components/app/ui/icons/icons/inventory-icon';
 import DashboardIcon from '@/components/app/ui/svgs-as-icons/dashboard-icon';
 import ReportsIcon from '@/components/app/ui/svgs-as-icons/reports-icon';
 import SettingsIcon from '@/components/app/ui/svgs-as-icons/settings-icon';
@@ -9,9 +9,10 @@ import { Animated, Modal, Pressable, StyleSheet, TouchableOpacity, TouchableWith
 import { Ionicons } from '@expo/vector-icons';
 import { StyledBodyPrimaryText } from '@/components/app/ui/styled-components/style-texts';
 import { useOrganization } from '@/context/organization-context';
+import HomeIcon from '@/components/app/ui/icons/icons/home-icon';
 
 const CustomLayout = ({ children }) => {
-  const { theme } = useTheme();
+  const { theme, mode } = useTheme();
 
   const [modalVisible, setModalVisible] = useState(false);
   const slideAnim = new Animated.Value(0);
@@ -66,10 +67,10 @@ const CustomLayout = ({ children }) => {
         onRequestClose={closeModal}
       >
         <TouchableWithoutFeedback onPress={closeModal}>
-          <View style={styles.modalOverlay}>
+          <View style={[styles.modalOverlay, { backgroundColor: mode === 'light' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(200, 200, 200, 0.1)'}]}>
             <TouchableWithoutFeedback>
               <View style={[styles.modalContent, {  backgroundColor: theme.background.primary}]}>
-                <View style={{ alignItems: 'center', position: 'absolute', top: -20, left: '45%' }}>
+                <View style={{ alignItems: 'center', position: 'absolute', top: -20, left: '48%' }}>
                   <Pressable
                     onPress={closeModal}
                     style={{
@@ -83,15 +84,15 @@ const CustomLayout = ({ children }) => {
                 </View>
                 <TouchableOpacity style={styles.sheetButton}>
                   <Ionicons name='add' size={24} color={theme.text.primary} style={[styles.sheetIcon, { borderColor: theme.text.primary, padding: 3.2}]} />
-                  <StyledBodyPrimaryText text='Add item'/>
+                  <StyledBodyPrimaryText text='Add Product'/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.sheetButton}>
                   <Ionicons name='arrow-up-outline' size={16} color={theme.text.primary} style={[styles.sheetIcon, { borderColor: theme.text.primary}]} />
-                  <StyledBodyPrimaryText text='Add sale'/>
+                  <StyledBodyPrimaryText text='Add Sale'/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.sheetButton}>
                   <Ionicons name='arrow-down-outline' size={16} color={theme.text.primary} style={[styles.sheetIcon, { borderColor: theme.text.primary}]} />
-                  <StyledBodyPrimaryText text='Add stock'/>
+                  <StyledBodyPrimaryText text='Add Stock'/>
                 </TouchableOpacity>
               </View>
             </TouchableWithoutFeedback>
@@ -124,14 +125,14 @@ export default function OrganizationLayout() {
             paddingBottom: 4,
             gap: 8,
             backgroundColor: theme.background.primary
-          }
+          },
         }}
       >
         <Tabs.Screen
           name="index"
           options={{
-            title: 'Dashboard',
-            tabBarIcon: ({ color }) => <DashboardIcon color={color} size={28} />,
+            title: 'Home',
+            tabBarIcon: ({ color }) => <HomeIcon color={color} size={28} />,
           }}
         />
         <Tabs.Screen
@@ -145,7 +146,7 @@ export default function OrganizationLayout() {
         <Tabs.Screen
           name="reports"
           options={{
-            title: 'Report',
+            title: 'Reports',
             tabBarItemStyle: { marginLeft: 14},
             tabBarIcon: ({ color }) => <ReportsIcon color={color} size={28} />,
           }}
@@ -182,7 +183,6 @@ const styles = StyleSheet.create({
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
     justifyContent: 'flex-end',
   },
   modalContent: {

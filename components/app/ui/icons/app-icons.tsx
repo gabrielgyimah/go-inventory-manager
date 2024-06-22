@@ -38,6 +38,8 @@ interface IconProps {
             | 'musical-instruments' | 'stationery' | 'pharmaceuticals' | 'medical-equipment'
             | 'GreenEnvelope' | 'GreenNoProducts'
             | 'Televison' | 'Airpods' | 'Speakers' | 'Storage'
+            | 'HomeIcon' | 'CategoryIcon' | 'MoneyIcon' | 'ShoppingBagIcon' | 'InventoryIcon' | 'ExpiredIcon'
+            | 'StockLevelsIcon' | 'ExpandIcon'
 }
 
 const AppIcons: React.FC<IconProps> = ({ name, size, color }) => {

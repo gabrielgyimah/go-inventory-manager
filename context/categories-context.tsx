@@ -47,7 +47,7 @@ export interface Category {
    *        | 'office-supplies' | 'cleaning-supplies' | 'personal-care' | 'health' | 'beauty'
    *        | 'automotive' | 'gardening' | 'outdoor' | 'home-decor' | 'appliances' | 'jewelry'
    *        | 'watches' | 'baby-products' | 'musical-instruments' | 'stationery' | 'pharmaceuticals'
-   *        | 'medical-equipment'}
+   *        | 'medical-equipment' | 'Airpods' | 'Speakers' | 'Storage' | 'Televison'}
    */
   iconName: 'electricals' | 'vegetables' | 'fizzy-drinks' | 'tubers' | 'books' | 'cosmetics' 
             | 'bottled-water' | 'sachet-water' | 'beer' | 'dry-gin' | 'electronics' | 'furniture'
@@ -55,7 +55,8 @@ export interface Category {
             | 'groceries' | 'dairy' | 'meat' | 'seafood' | 'bakery' | 'frozen-foods' | 'pet-supplies'
             | 'office-supplies' | 'cleaning-supplies' | 'personal-care' | 'health' | 'beauty' | 'automotive'
             | 'gardening' | 'outdoor' | 'home-decor' | 'appliances' | 'jewelry' | 'watches' | 'baby-products'
-            | 'musical-instruments' | 'stationery' | 'pharmaceuticals' | 'medical-equipment';
+            | 'musical-instruments' | 'stationery' | 'pharmaceuticals' | 'medical-equipment' | 'Airpods' | 'Speakers'
+            | 'Storage' | 'Televison';
 }
 
 /**

@@ -9,6 +9,8 @@ import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { AppIconProvider } from '@/context/app-icon-context';
 import { OrganizationContextProvider } from '@/context/organization-context';
 import { InvitesContextProvider } from '@/context/invites-context';
+import { CategoryContextProvider } from '@/context/categories-context';
+import { ProductProvider } from '@/context/product-context';
 
 export default function RootLayout() {
   return (
@@ -19,7 +21,11 @@ export default function RootLayout() {
             <BottomSheetModalProvider>
               <OrganizationContextProvider>
                 <InvitesContextProvider>
-                  <Slot />
+                  <CategoryContextProvider>
+                    <ProductProvider>
+                      <Slot />
+                    </ProductProvider>
+                  </CategoryContextProvider>
                 </InvitesContextProvider>
               </OrganizationContextProvider>
             </BottomSheetModalProvider>

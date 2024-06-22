@@ -30,8 +30,8 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ title, iconName, categoryId
   return (
     <TouchableOpacity onPress={handlePress}>
       <StyledMutedBorderContainer style={styles.card}>
-        <AppIcons name={iconName} size={30} />
-        <StyledBodyPrimaryText text={title} numberOfLines={1} ellipsizeMode="tail" />
+        <AppIcons name={iconName} size={30} color='black'/>
+        <StyledBodyPrimaryText text={title} numberOfLines={1} ellipsizeMode="tail" style={{fontSize: 14, color: 'black'}} />
       </StyledMutedBorderContainer>
     </TouchableOpacity>
   );
@@ -43,11 +43,10 @@ const styles = StyleSheet.create({
     height: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
     margin: 5,
     borderRadius: 10,
   },
-  title: {
+  tile: {
     marginTop: 10,
     fontSize: 14,
     fontWeight: 'bold',

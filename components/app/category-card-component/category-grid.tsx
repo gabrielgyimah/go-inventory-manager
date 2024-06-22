@@ -6,12 +6,12 @@ import { router } from 'expo-router';
 import GreenButton from '../ui/buttons/green-button';
 
 const mockCategories: Category[] = [
-  { id: '1', title: 'Televisions', description: 'Electrical appliances and gadgets.', productsCount: 120, iconName: 'clothing' },
-  { id: '2', title: 'Airpods', description: 'Fresh vegetables and greens.', productsCount: 80, iconName: 'vegetables' },
-  { id: '3', title: 'Speakers', description: 'Carbonated beverages.', productsCount: 45, iconName: 'Airpods' },
+  { id: '1', title: 'Books', description: 'Electrical appliances and gadgets.', productsCount: 120, iconName: 'clothing' },
+  { id: '2', title: 'Air Conditions', description: 'Fresh vegetables and greens.', productsCount: 80, iconName: 'vegetables' },
+  { id: '3', title: 'Airpods', description: 'Carbonated beverages.', productsCount: 45, iconName: 'Airpods' },
   { id: '4', title: 'Storage', description: 'Various kinds of tubers.', productsCount: 60, iconName: 'Storage' },
-  { id: '5', title: 'Books', description: 'Books and reading materials.', productsCount: 150, iconName: 'Televison' },
-  { id: '6', title: 'Cosmetics', description: 'Beauty and skincare products.', productsCount: 70, iconName: 'Speakers' },
+  { id: '5', title: 'Television', description: 'Books and reading materials.', productsCount: 150, iconName: 'Televison' },
+  { id: '6', title: 'Speakers', description: 'Beauty and skincare products.', productsCount: 70, iconName: 'Speakers' },
   { id: '7', title: 'Books', description: 'Different brands of bottled water.', productsCount: 40, iconName: 'bottled-water' },
   { id: '8', title: 'Sachet Water', description: 'Affordable sachet water.', productsCount: 55, iconName: 'sachet-water' },
 ];

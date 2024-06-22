@@ -7,6 +7,8 @@ import { StyledMutedContainer } from '@/components/app/ui/styled-components/styl
 import AppIcons from '@/components/app/ui/icons/app-icons';
 import CategoryGrid from '../category-card-component/category-grid';
 import { ProductInterface, useProduct } from '../../../context/product-context';
+import { useOrganization } from '@/context/organization-context'
+
 
 const mockProducts: ProductInterface[] = [
   { id: '1', name: 'Nexus 50" Tv', units: '40 units', price: 60000, productImageUrl: 'https://images.pexels.com/photos/9561301/pexels-photo-9561301.jpeg?auto=compress&cs=tinysrgb&w=600', categoryId: '1' },
@@ -24,6 +26,7 @@ const mockProducts: ProductInterface[] = [
 export default function InventoryContainer() {
   const { products, setProducts } = useProduct();
   const [filteredData, setFilteredData] = React.useState(products);
+  const { organization } = useOrganization()
 
   useEffect(() => {
     setProducts(mockProducts);
@@ -77,8 +80,8 @@ export default function InventoryContainer() {
                         <View style={styles.units}>
                           <StyledBodyPrimaryText text={item.units} />
                         </View>
-                        <StyledBodyMutedText text={`NGN${item.price.toFixed(2)}`} />
-                      </View>
+                        <StyledBodyMutedText text={`${organization?.currency} ${item.price.toFixed(2)}`} />
+                        </View>
                     </View>
                 </View>
               </View>

@@ -23,7 +23,7 @@ export default function DashboardContainer() {
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4}}>
             <View style={{ flexDirection: 'row', alignItems: 'center'}}>
               <Ionicons name='location-outline' color={theme.text.muted} size={20}/>
-              <StyledH4MutedText style={{ fontWeight: 'normal'}} text={organization?.country} />
+              <StyledH4MutedText style={{ fontWeight: 'normal'}} text={`${organization?.country}`} />
             </View>
             <StyledH3MutedText style={{ fontWeight: '100'}} text=' | '/>
             <CurrentTime />

@@ -67,7 +67,7 @@ export interface OrganizationInterface {
   OrganizationType: OrganizationType;
 
   /**
-   * The industry or category that the Organization falls under.
+   * the ccurrency the Organization uses.
    * @type {currency}
    */
   currency: string;

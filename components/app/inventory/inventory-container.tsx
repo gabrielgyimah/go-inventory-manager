@@ -1,5 +1,5 @@
 import { StyleSheet, View, ImageBackground, FlatList } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyledPrimaryContainer } from '../ui/styled-components/style-container';
 import SearchBar from '../searchBar/searchBar';
 import { StyledBodyMutedText, StyledH4PrimaryText, StyledH3PrimaryText, StyledH5PrimaryText, StyledBodyPrimaryText } from '../ui/styled-components/style-texts';
@@ -8,7 +8,6 @@ import AppIcons from '@/components/app/ui/icons/app-icons';
 import CategoryGrid from '../category-card-component/category-grid';
 import { ProductInterface, useProduct } from '../../../context/product-context';
 import { useOrganization } from '@/context/organization-context'
-
 
 const mockProducts: ProductInterface[] = [
   { id: '1', name: 'Nexus 50" Tv', units: '40 units', price: 60000, productImageUrl: 'https://images.pexels.com/photos/9561301/pexels-photo-9561301.jpeg?auto=compress&cs=tinysrgb&w=600', categoryId: '1' },
@@ -25,8 +24,9 @@ const mockProducts: ProductInterface[] = [
 
 export default function InventoryContainer() {
   const { products, setProducts } = useProduct();
-  const [filteredData, setFilteredData] = React.useState(products);
-  const { organization } = useOrganization()
+  const [filteredData, setFilteredData] = useState(products);
+  const [searchActive, setSearchActive] = useState(false);
+  const { organization } = useOrganization();
 
   useEffect(() => {
     setProducts(mockProducts);
@@ -37,36 +37,26 @@ export default function InventoryContainer() {
   }, [products]);
 
   const handleSearch = (query: string) => {
-    const filtered = products.filter((product) => {
-      return product.name.toLowerCase().includes(query.toLowerCase());
-    });
-    setFilteredData(filtered);
+    if (query) {
+      const filtered = products.filter((product) => {
+        return product.name.toLowerCase().includes(query.toLowerCase());
+      });
+      setFilteredData(filtered);
+      setSearchActive(true);
+    } else {
+      setFilteredData(products);
+      setSearchActive(false);
+    }
   };
 
   return (
     <StyledPrimaryContainer style={styles.container}>
-      {products.length === 0 ? (
-        <View style={styles.emptyContainer}>
-          <View style={styles.centeredContent}>
-            <StyledMutedContainer style={styles.envelope}>
-              <AppIcons name="GreenNoProducts" />
-            </StyledMutedContainer>
-            <View style={styles.emptyTextContainer}>
-              <StyledH4PrimaryText text="No Products yet" style={{ textAlign: 'center' }} />
-              <StyledBodyMutedText text="Start by adding a product to your inventory" style={{ textAlign: 'center' }} />
-            </View>
-          </View>
-        </View>
-      ) : (
-        <View style={styles.listContainer}>
-          <View style={styles.fixedHeader}>
-            <View style={styles.searchBar}>
-              <SearchBar onSearch={handleSearch} />
-            </View>
-            <StyledH4PrimaryText text='Product Categories' />
-            <CategoryGrid />
-          </View>
-          <StyledH4PrimaryText text='All Products' />
+      <View style={styles.searchBar}>
+        <SearchBar onSearch={handleSearch} />
+      </View>
+      {searchActive ? (
+        <View style={styles.searchResultsContainer}>
+          <StyledH4PrimaryText text={`Results (${filteredData.length})`} />
           <FlatList
             data={filteredData}
             keyExtractor={(item) => item.id}
@@ -81,13 +71,57 @@ export default function InventoryContainer() {
                           <StyledBodyPrimaryText text={item.units} />
                         </View>
                         <StyledBodyMutedText text={`${organization?.currency} ${item.price.toFixed(2)}`} />
-                        </View>
+                      </View>
                     </View>
                 </View>
               </View>
             )}
           />
         </View>
+      ) : (
+        <>
+          {products.length === 0 ? (
+            <View style={styles.emptyContainer}>
+              <View style={styles.centeredContent}>
+                <StyledMutedContainer style={styles.envelope}>
+                  <AppIcons name="GreenNoProducts" />
+                </StyledMutedContainer>
+                <View style={styles.emptyTextContainer}>
+                  <StyledH4PrimaryText text="No Products yet" style={{ textAlign: 'center' }} />
+                  <StyledBodyMutedText text="Start by adding a product to your inventory" style={{ textAlign: 'center' }} />
+                </View>
+              </View>
+            </View>
+          ) : (
+            <View style={styles.listContainer}>
+              <View style={styles.fixedHeader}>
+                <StyledH4PrimaryText text='Product Categories' />
+                <CategoryGrid />
+              </View>
+              <StyledH4PrimaryText text='All Products' />
+              <FlatList
+                data={filteredData}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                  <View style={styles.item}>
+                    <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center'}}>
+                      <RenderProductImage product={item} />
+                        <View style={{ flexDirection: 'column', gap: 16}}>
+                          <StyledBodyPrimaryText text={item.name} style={{fontWeight: 500}}/>
+                          <View style={styles.row}>
+                            <View style={styles.units}>
+                              <StyledBodyPrimaryText text={item.units} />
+                            </View>
+                            <StyledBodyMutedText text={`${organization?.currency} ${item.price.toFixed(2)}`} />
+                          </View>
+                        </View>
+                    </View>
+                  </View>
+                )}
+              />
+            </View>
+          )}
+        </>
       )}
     </StyledPrimaryContainer>
   );
@@ -135,6 +169,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   listContainer: {
+    flex: 1,
+    marginTop: 16,
+  },
+  searchResultsContainer: {
     flex: 1,
     marginTop: 16,
   },

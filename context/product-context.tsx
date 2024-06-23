@@ -6,6 +6,7 @@ export interface ProductInterface {
   units: string;
   price: number;
   productImageUrl: string;
+  categoryId: string; // Each product should belong to a category
 }
 
 export interface ProductContextProps {
@@ -17,8 +18,6 @@ export interface ProductContextProps {
 }
 
 const ProductContext = createContext<ProductContextProps | undefined>(undefined);
-
-
 
 export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [products, setProducts] = useState<ProductInterface[]>([]);

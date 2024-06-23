@@ -86,8 +86,8 @@ export default function InventoryContainer() {
           {filteredData.length === 0 ? (
             <View style={styles.emptyContainer}>
               <View style={styles.centeredContent}>
-                <StyledMutedContainer style={styles.envelope}>
-                  <FontAwesome name="search" size={70} style={{ color: theme.background.secondary}} />
+                <StyledMutedContainer style={styles.emptySearch}>
+                  <FontAwesome name="search" size={40} style={{ color: theme.background.secondary}} />
                 </StyledMutedContainer>
                 <View style={styles.emptyTextContainer}>
                   <StyledH4PrimaryText text={`No Result for ${searchInput}`} style={{ textAlign: 'center'  }} />
@@ -174,13 +174,13 @@ export default function InventoryContainer() {
       <CustomBottomSheet ref={bottomSheet} customDetached snapPoints={bottomSheetSnapPoints} title="Sort By">
         <View style={{ paddingVertical: 20, alignItems: 'center' }}>
           <Pressable style={styles.sortOption} onPress={() => handleSort('name')}>
-            <StyledBodyPrimaryText style={styles.sortOptionText} text='Name'/>
+            <StyledBodyPrimaryText text='Name'/>
           </Pressable>
           <Pressable style={styles.sortOption} onPress={() => handleSort('units')}>
-            <StyledBodyPrimaryText style={styles.sortOptionText} text='Units'/>
+            <StyledBodyPrimaryText text='Units'/>
           </Pressable>
           <Pressable style={styles.sortOption} onPress={() => handleSort('price')}>
-            <StyledBodyPrimaryText style={styles.sortOptionText} text='Price'/>
+            <StyledBodyPrimaryText text='Price'/>
           </Pressable>
         </View>
       </CustomBottomSheet>
@@ -276,7 +276,11 @@ const styles = StyleSheet.create({
   sortOption: {
     padding: 10,
   },
-  sortOptionText: {
-    fontSize: 16,
+  emptySearch: {
+    padding: 40,
+    borderRadius: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  
 });

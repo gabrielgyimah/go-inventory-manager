@@ -1,16 +1,18 @@
-import { StyleSheet, View, ImageBackground, FlatList, Text, Pressable } from 'react-native';
+import { StyleSheet, View, ImageBackground, FlatList, Pressable } from 'react-native';
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { StyledPrimaryContainer } from '../ui/styled-components/style-container';
 import SearchBar from '../searchBar/searchBar';
-import { StyledBodyMutedText, StyledH4PrimaryText, StyledH3PrimaryText, StyledH5PrimaryText, StyledBodyPrimaryText } from '../ui/styled-components/style-texts';
+import { StyledBodyMutedText, StyledH4PrimaryText, StyledH3PrimaryText, StyledBodyPrimaryText } from '../ui/styled-components/style-texts';
 import { StyledMutedContainer } from '@/components/app/ui/styled-components/style-container';
 import AppIcons from '@/components/app/ui/icons/app-icons';
 import CategoryGrid from '../category-card-component/category-grid';
 import { ProductInterface, useProduct } from '../../../context/product-context';
 import { useOrganization } from '@/context/organization-context';
+import { useTheme } from '@/context/theme-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CustomBottomSheet from '../ui/custom-bottom-sheet';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const mockProducts: ProductInterface[] = [
   { id: '1', name: 'Nexus 50" Tv', units: '40 units', price: 60000, productImageUrl: 'https://images.pexels.com/photos/9561301/pexels-photo-9561301.jpeg?auto=compress&cs=tinysrgb&w=600', categoryId: '1' },
@@ -28,11 +30,14 @@ const mockProducts: ProductInterface[] = [
 
 export default function InventoryContainer() {
   const { products, setProducts } = useProduct();
+  const [ searchInput, setSearchInput ] = useState('');
   const [filteredData, setFilteredData] = useState(products);
   const [searchActive, setSearchActive] = useState(false);
   const { organization } = useOrganization();
   const bottomSheet = useRef<BottomSheetModal | null>(null);
   const bottomSheetSnapPoints = useMemo(() => ['25%'], []);
+  const { theme } = useTheme();
+
 
   useEffect(() => {
     setProducts(mockProducts);
@@ -63,6 +68,7 @@ export default function InventoryContainer() {
       const filtered = products.filter((product) => product.name.toLowerCase().includes(query.toLowerCase()));
       setFilteredData(filtered);
       setSearchActive(true);
+      setSearchInput(query);
     } else {
       setFilteredData(products);
       setSearchActive(false);
@@ -77,7 +83,19 @@ export default function InventoryContainer() {
       {searchActive ? (
         <View style={styles.searchResultsContainer}>
           <StyledH4PrimaryText text={`Results (${filteredData.length})`} />
-          <FlatList
+          {filteredData.length === 0 ? (
+            <View style={styles.emptyContainer}>
+              <View style={styles.centeredContent}>
+                <StyledMutedContainer style={styles.envelope}>
+                  <FontAwesome name="search" size={70} style={{ color: theme.background.secondary}} />
+                </StyledMutedContainer>
+                <View style={styles.emptyTextContainer}>
+                  <StyledH4PrimaryText text={`No Result for ${searchInput}`} style={{ textAlign: 'center'  }} />
+                  <StyledBodyMutedText text="Check the Spelling or try a new serch." style={{ textAlign: 'center' }} />
+                </View>
+              </View>
+            </View> ):(
+            <FlatList
             data={filteredData}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
@@ -97,6 +115,7 @@ export default function InventoryContainer() {
               </View>
             )}
           />
+          )}  
         </View>
       ) : (
         <>

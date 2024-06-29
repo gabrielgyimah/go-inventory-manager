@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, TextInput, StyleSheet, TextInputProps } from 'react-native';
+import { View, StyleSheet, TextInputProps } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useTheme } from '@/context/theme-context';
-import { StyledMutedBorderContainer, StyledPrimaryContainer } from '../ui/styled-components/style-container';
-import FilterSearchButton from '../ui/icons/icons/filter-search-icon';
-import FineTune from '../ui/icons/icons/settings-finetune';
+import { StyledPrimaryContainer } from '@/components/app/ui/styled-components/style-container';
+import FineTune from '@/components/app/ui/icons/icons/settings-finetune';
+import FloatingLabelInput from '@/components/app/ui/styled-components/floating-label-input';
 
 interface SearchBarProps extends TextInputProps {
   placeholder?: string;
@@ -16,17 +16,19 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch, ...props }
 
   return (
     <StyledPrimaryContainer style={styles.container}>
-      <StyledMutedBorderContainer style={[styles.searchContainer, { backgroundColor: theme.background.primary }]}>
-        <FontAwesome name="search" size={30} style={[styles.icon, { color: theme.background.secondary}]} />
-        <TextInput
-          style={[styles.input]}
-          placeholder='Search'
+      <View style={styles.searchContainer}>
+        <FloatingLabelInput
+          label="Search"
+          value={props.value}
           onChangeText={onSearch}
-          {...props}
+          containerStyle={styles.floatingLabelContainer}
+          inputStyle={styles.input}
+          leftIcon={<FontAwesome name="search" size={20} style={[styles.icon, { color: theme.background.secondary }]} />}
+          placeholder={placeholder}
         />
-      </StyledMutedBorderContainer>
-      <View style={{ width: '10%' }} >
-        <FineTune style={{height: 60}} />
+      </View>
+      <View style={styles.iconContainer}>
+        <FineTune style={{ height: 60 }} />
       </View>
     </StyledPrimaryContainer>
   );
@@ -41,12 +43,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    borderRadius: 8,
-    height: 50,
     width: '90%',
-    borderWidth: 1,
-    borderColor: '#ccc',
   },
   icon: {
     marginRight: 10,
@@ -54,6 +51,14 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     height: '100%',
+  },
+  iconContainer: {
+    width: '10%',
+  },
+  floatingLabelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
   },
 });
 

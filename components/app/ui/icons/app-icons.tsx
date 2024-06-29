@@ -39,7 +39,7 @@ interface IconProps {
             | 'GreenEnvelope' | 'GreenNoProducts'
             | 'Televison' | 'Airpods' | 'Speakers' | 'Storage'
             | 'HomeIcon' | 'CategoryIcon' | 'MoneyIcon' | 'ShoppingBagIcon' | 'InventoryIcon' | 'ExpiredIcon'
-            | 'StockLevelsIcon' | 'ExpandIcon'
+            | 'StockLevelsIcon' | 'ExpandIcon' | 'UpDownArrow'
 }
 
 const AppIcons: React.FC<IconProps> = ({ name, size, color }) => {

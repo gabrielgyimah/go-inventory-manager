@@ -12,7 +12,7 @@ import { useTheme } from '@/context/theme-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CustomBottomSheet from '../ui/custom-bottom-sheet';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 const mockProducts: ProductInterface[] = [
   { id: '1', name: 'Nexus 50" Tv', units: '40 units', price: 60000, productImageUrl: 'https://images.pexels.com/photos/9561301/pexels-photo-9561301.jpeg?auto=compress&cs=tinysrgb&w=600', categoryId: '1' },
@@ -134,10 +134,10 @@ export default function InventoryContainer() {
           ) : (
             <View style={styles.listContainer}>
               <View style={styles.fixedHeader}>
-                <StyledH4PrimaryText text="Product Categories" style={{ left: 16, marginBottom: 15 }} />
+                <StyledH4PrimaryText text="Product Categories" style={{ paddingHorizontal: 12, }} />
                 <CategoryGrid />
               </View>
-              <View style={{ flexDirection: 'row', left: 16, marginVertical: 15, justifyContent: 'space-between', marginRight: 50 }}>
+              <View style={{ flexDirection: 'row', marginVertical: 15, justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 12, }}>
                 <StyledH4PrimaryText text="All Products" />
                 <TouchableOpacity onPress={openBottomSheet}>
                   <AppIcons name="UpDownArrow" />
@@ -150,7 +150,7 @@ export default function InventoryContainer() {
                   <View style={styles.item}>
                     <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
                       <RenderProductImage product={item} />
-                      <View style={{ flexDirection: 'column', gap: 16 }}>
+                      <View style={{ flexDirection: 'column', gap: 16, flex: 1 }}>
                         <StyledBodyPrimaryText text={item.name} style={{ fontWeight: 500 }} />
                         <View style={styles.row}>
                           <View style={styles.units}>
@@ -159,9 +159,7 @@ export default function InventoryContainer() {
                           <StyledBodyMutedText text={`${organization?.currency} ${item.price.toFixed(2)}`} />
                         </View>
                       </View>
-                      <View style={{ marginLeft: 50, marginTop: 0 }}>
-                        <AppIcons name="VerticalMenu" size={24} />
-                      </View>
+                      <AppIcons name="VerticalMenu" size={24} />
                     </View>
                   </View>
                 )}
@@ -212,8 +210,6 @@ const RenderProductImage: React.FC<RenderProductImageProps> = ({ product }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 12,
-    paddingBottom: 12,
     paddingTop: 32,
   },
   fixedHeader: {
@@ -221,7 +217,7 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     width: '100%',
-    padding: 16,
+    paddingLeft: 12,
   },
   envelope: {
     padding: 100,
@@ -255,8 +251,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
-    left: 16,
-    right: 16,
+    paddingHorizontal: 12,
   },
   imageBackground: {
     width: 50,

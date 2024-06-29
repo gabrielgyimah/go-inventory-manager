@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Tabs, router } from 'expo-router'; // Assuming `router` and other imports are correct
+import { Stack, Tabs, router } from 'expo-router'; // Assuming `router` and other imports are correct
 import { useTheme } from '@/context/theme-context';
 import InventoryIcon from '@/components/app/ui/icons/icons/inventory-icon';
 import DashboardIcon from '@/components/app/ui/svgs-as-icons/dashboard-icon';

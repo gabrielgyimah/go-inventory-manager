@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput, StyleSheet, TextInputProps } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useTheme } from '@/context/theme-context';
 import { StyledMutedBorderContainer, StyledPrimaryContainer } from '../ui/styled-components/style-container';
 import FilterSearchButton from '../ui/icons/icons/filter-search-icon';
@@ -16,7 +16,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch, ...props }
 
   return (
     <StyledPrimaryContainer style={styles.container}>
-      <StyledMutedBorderContainer style={[styles.searchContainer, { backgroundColor: theme.background.primary }]}>
+      <StyledMutedBorderContainer style={[styles.searchContainer ]}>
         <FontAwesome name="search" size={30} style={[styles.icon, { color: theme.background.secondary}]} />
         <TextInput
           style={[styles.input]}
@@ -25,9 +25,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch, ...props }
           {...props}
         />
       </StyledMutedBorderContainer>
-      <View style={{ width: '10%' }} >
-        <FineTune style={{height: 60}} />
-      </View>
+      <FineTune />
     </StyledPrimaryContainer>
   );
 };
@@ -46,7 +44,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: '90%',
     borderWidth: 1,
-    borderColor: '#ccc',
   },
   icon: {
     marginRight: 10,

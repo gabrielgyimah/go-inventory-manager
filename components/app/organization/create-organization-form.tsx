@@ -24,6 +24,7 @@ const mockOrganization: OrganizationInterface = {
     description: "Organizations in the technology industry."
   },
   country: "USA",
+  currency: "USD",
   contactPhone: "+1-800-555-1234",
   logoUrl: "https://example.com/logo.png"
 };
@@ -117,7 +118,7 @@ export default function CreateOrganizationForm() {
                     }}
                     visible
                   />
-                  <StyledBodyPrimaryText text={country?.name!} style={{ flex: 1}}/>
+                  <StyledBodyPrimaryText text={`${country?.name!}`} style={{ flex: 1}}/>
                   <Ionicons name='chevron-down-outline' size={14} color={theme.text.muted}/>
                 </StyledMutedBorderContainer>
                 <StyledMutedBorderContainer style={{ flexDirection: 'row', gap: 12, padding: 12, minHeight: 50, justifyContent: 'center', alignItems: 'center'}}>

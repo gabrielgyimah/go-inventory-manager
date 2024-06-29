@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode, Dispatch, SetStateAction } from "react";
+import { CurrencyCode } from "react-native-country-picker-modal";
 
 /**
  * Interface representing a type of Organization.
@@ -64,6 +65,12 @@ export interface OrganizationInterface {
    * @type {OrganizationType}
    */
   OrganizationType: OrganizationType;
+
+  /**
+   * the ccurrency the Organization uses.
+   * @type {currency}
+   */
+  currency: string;
 
   /**
    * The country where the Organization operates.

@@ -41,14 +41,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   content: {
-    paddingTop: 12,
+    paddingTop: 24,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
   item: {
     width: '50%', // Two items per row
-    marginBottom: 24, // Adjust spacing between rows
+    marginBottom: 40, // Adjust spacing between rows
   },
   itemContent: {
     flexDirection: 'row',

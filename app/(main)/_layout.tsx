@@ -4,6 +4,7 @@ import { useTheme } from '@/context/theme-context';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import 'react-native-reanimated';
@@ -29,10 +30,11 @@ export default function MainLayoutController() {
 
   const showAnimation = !appIsReady || !isAnimationFinished;
   const { isAuthenticated } = useAuth();
-  const { theme } = useTheme();
+  const { theme, mode } = useTheme();
 
   return (
     <Animated.View style={[{ flex: 1, backgroundColor: theme.background.primary }]}>
+      <StatusBar style={mode === 'light' ? 'dark' : 'light'}  />
       {showAnimation ? (
         <AnimatedSplashScreen setIsAnimationFinished={setIsAnimationFinished} />
       ) : (

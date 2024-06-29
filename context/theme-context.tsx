@@ -14,7 +14,7 @@ const lightTheme: Theme = {
     secondary: '#1f2921',
     tertiary: '#9C9C9C',
     muted: '#BFBFBF',
-    mutedLight: '#E0E0E0'
+    mutedLight: '#F0F1F1'
   },
   status: {
     valid: '#16A34A',

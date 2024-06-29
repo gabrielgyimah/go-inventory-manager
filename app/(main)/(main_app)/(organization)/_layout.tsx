@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   addButtonContainer: {
     position: 'absolute',
     width: '100%',
-    bottom: 30,
+    bottom: 27,
     alignItems: 'center',
   },
   sheetButton: {

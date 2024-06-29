@@ -39,9 +39,9 @@ export default function DashboardContainer() {
           <StyledMutedBorderContainer style={{ padding: 12, flex: 1}}>
             <View style={styles.stockMonitor}>
               <AppIcons name='StockLevelsIcon' size={22} color={theme.others.gold} />
-              <View style={{ gap: 12}}>
+              <View style={{ gap: 20}}>
                 <StyledBodyMutedText text='Low In Stock'/>
-                <StyledH4PrimaryText text='0' />
+                <StyledH3PrimaryText text='0' />
               </View>
               <AppIcons name='ExpandIcon' size={24} />
             </View>
@@ -49,9 +49,9 @@ export default function DashboardContainer() {
           <StyledMutedBorderContainer style={{ padding: 12, flex: 1}}>
             <View style={styles.stockMonitor}>
               <AppIcons name='ExpiredIcon' size={24} color={theme.status.danger} />
-              <View style={{ gap: 12}}>
+              <View style={{ gap: 20}}>
                 <StyledBodyMutedText text='Expired Stock'/>
-                <StyledH4PrimaryText text='0' />
+                <StyledH3PrimaryText text='0' />
               </View>
               <AppIcons name='ExpandIcon' size={24} />
             </View>

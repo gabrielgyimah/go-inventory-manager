@@ -15,51 +15,24 @@ import CompletedAnimation from '@/components/app/animation/completed-animation';
 
 // Mock invites data
 const mockInvites: InviteInterface[] = [
-  {
-    id: '1',
-    organizationName: 'Tech Innovators',
-    organizationImageUrl: 'https://images.pexels.com/photos/9561301/pexels-photo-9561301.jpeg?auto=compress&cs=tinysrgb&w=600',
-    message: 'Join us to innovate the future of technology.',
-    status: InviteStatus.PENDING,
-    isActive: true,
-    expiresIn: '2024-07-01T00:00:00Z',
-  },
-  {
-    id: '2',
-    organizationName: 'Health Solutions',
-    organizationImageUrl: '',
-    message: 'Be part of our mission to improve healthcare.',
-    status: InviteStatus.ACCEPTED,
-    isActive: false,
-    expiresIn: '2024-08-15T00:00:00Z',
-  },
-  {
-    id: '3',
-    organizationName: 'Eco Warriors',
-    organizationImageUrl: 'https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg?auto=compress&cs=tinysrgb&w=600',
-    message: 'Help us make the world a greener place.',
-    status: InviteStatus.PENDING,
-    isActive: true,
-    expiresIn: '2024-09-10T00:00:00Z',
-  },
-  {
-    id: '4',
-    organizationName: 'Tech Innovators',
-    organizationImageUrl: 'https://images.pexels.com/photos/9561301/pexels-photo-9561301.jpeg?auto=compress&cs=tinysrgb&w=600',
-    message: 'Join us to innovate the future of technology.',
-    status: InviteStatus.PENDING,
-    isActive: true,
-    expiresIn: '2024-07-01T00:00:00Z',
-  },
-  {
-    id: '5',
-    organizationName: 'Health Solutions',
-    organizationImageUrl: '',
-    message: 'Be part of our mission to improve healthcare.',
-    status: InviteStatus.ACCEPTED,
-    isActive: false,
-    expiresIn: '2024-08-15T00:00:00Z',
-  },
+  // {
+  //   id: '1',
+  //   organizationName: 'Tech Innovators',
+  //   organizationImageUrl: 'https://images.pexels.com/photos/9561301/pexels-photo-9561301.jpeg?auto=compress&cs=tinysrgb&w=600',
+  //   message: 'Join us to innovate the future of technology.',
+  //   status: InviteStatus.PENDING,
+  //   isActive: true,
+  //   expiresIn: '2024-07-01T00:00:00Z',
+  // },
+  // {
+  //   id: '2',
+  //   organizationName: 'Health Solutions',
+  //   organizationImageUrl: '',
+  //   message: 'Be part of our mission to improve healthcare.',
+  //   status: InviteStatus.ACCEPTED,
+  //   isActive: false,
+  //   expiresIn: '2024-08-15T00:00:00Z',
+  // },
 ];
 
 const InvitesScreen: React.FC = () => {
@@ -109,7 +82,7 @@ const InvitesScreen: React.FC = () => {
         {invites.length === 0 ? (
           <View style={styles.emptyContainer}>
             <View style={styles.centeredContent}>
-              <StyledMutedContainer style={styles.envelope}>
+              <StyledMutedContainer style={[styles.envelope, { backgroundColor: theme.text.mutedLight}]}>
                 <AppIcons name="GreenEnvelope" />
               </StyledMutedContainer>
               <View style={styles.emptyTextContainer}>

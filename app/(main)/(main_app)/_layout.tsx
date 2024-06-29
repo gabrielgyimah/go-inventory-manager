@@ -20,6 +20,7 @@ export default function AppLayout() {
           headerStyle: { backgroundColor: theme.background.primary}
         }}>
           <Stack.Screen name='(organization)' options={{title: '', headerShown: false}}  />
+          <Stack.Screen name='(stacks)' options={{title: '', headerShown: true}}  />
         </Stack>
       )}
     </>

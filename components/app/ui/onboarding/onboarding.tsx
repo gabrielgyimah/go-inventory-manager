@@ -77,7 +77,7 @@ export default function Onboarding() {
       <View style={{ 
         flexDirection: 'row', gap: 20, paddingBottom: 80, 
         paddingHorizontal: 12, justifyContent: 'space-between', 
-        alignItems: 'center', maxWidth: 400,
+        alignItems: 'center',
       }}>
         <Link href='(auth)/signup' style={{ backgroundColor: theme.status.valid, padding: 16, borderRadius: 12, flex: 1, overflow: 'hidden'}}>
           <Text style={{ textAlign: 'center', fontWeight: '500', fontSize: 18, color: theme.others.white}}>Sign up</Text>

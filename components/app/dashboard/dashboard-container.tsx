@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { StyledMutedBorderContainer, StyledPrimaryContainer } from '../ui/styled-components/style-container'
 import { StyledBodyMutedText, StyledH1MutedText, StyledH3MutedText, StyledH3PrimaryText, StyledH4MutedText, StyledH4PrimaryText, StyledH5PrimaryText } from '../ui/styled-components/style-texts'
@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '@/context/theme-context'
 import CurrentTime from '../utils/time'
 import { useOrganization } from '@/context/organization-context'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import InventorySummary from './inventory-summary'
 import AppIcons from '../ui/icons/app-icons'
 
@@ -15,6 +15,12 @@ export default function DashboardContainer() {
   const { user } = useAuth()
   const { theme } = useTheme()
   const { organization } = useOrganization()
+
+  const handleNavigation = (link: string) => {
+    router.navigate(link);
+  };
+
+
   return (
     <StyledPrimaryContainer style={styles.container}>
       <View style={styles.topContainer}>
@@ -36,29 +42,32 @@ export default function DashboardContainer() {
       <View style={styles.analytics}>
         <InventorySummary />
         <View style={styles.stockMonitor}>
-          <StyledMutedBorderContainer style={{ padding: 12, flex: 1}}>
-            <View style={styles.stockMonitor}>
-              <AppIcons name='StockLevelsIcon' size={22} color={theme.others.gold} />
-              <View style={{ gap: 20}}>
-                <StyledBodyMutedText text='Low In Stock'/>
-                <StyledH3PrimaryText text='0' />
+          <Pressable onPress={() => handleNavigation('/(stacks)/low-in-stock')}>
+            <StyledMutedBorderContainer style={{ padding: 12}}>
+              <View style={styles.stockMonitor}>
+                <AppIcons name='StockLevelsIcon' size={22} color={theme.others.gold} />
+                <View style={{ gap: 20}}>
+                  <StyledBodyMutedText text='Low In Stock'/>
+                  <StyledH3PrimaryText text='0' />
+                </View>
+                <AppIcons name='ExpandIcon' size={24} />
               </View>
-              <AppIcons name='ExpandIcon' size={24} />
-            </View>
-          </StyledMutedBorderContainer>
-          <StyledMutedBorderContainer style={{ padding: 12, flex: 1}}>
-            <View style={styles.stockMonitor}>
-              <AppIcons name='ExpiredIcon' size={24} color={theme.status.danger} />
-              <View style={{ gap: 20}}>
-                <StyledBodyMutedText text='Expired Stock'/>
-                <StyledH3PrimaryText text='0' />
+            </StyledMutedBorderContainer>
+          </Pressable>
+          <Pressable onPress={() => handleNavigation('/(stacks)/expired-stocks')}>
+            <StyledMutedBorderContainer style={{ padding: 12}}>
+              <View style={styles.stockMonitor}>
+                <AppIcons name='ExpiredIcon' size={24} color={theme.status.danger} />
+                <View style={{ gap: 20}}>
+                  <StyledBodyMutedText text='Expired Stock'/>
+                  <StyledH3PrimaryText text='0' />
+                </View>
+                <AppIcons name='ExpandIcon' size={24} />
               </View>
-              <AppIcons name='ExpandIcon' size={24} />
-            </View>
-          </StyledMutedBorderContainer>
+            </StyledMutedBorderContainer>
+          </Pressable >
         </View>
       </View>
-
       <View>
         <View style={styles.stockMonitor}>
           <StyledH4PrimaryText style={{flex: 1}} text='Top Products'/>
